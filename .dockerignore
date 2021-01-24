@@ -4,9 +4,11 @@
 .idea
 .config
 .npm
+.DS_Store
 .gitignore
 .editorconfig
 certs
+LICENSE
 nodemon.json
 node_modules
 npm-debug.log
