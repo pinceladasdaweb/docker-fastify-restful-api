@@ -1,0 +1,12 @@
+*.md
+.env*
+.git
+.idea
+.config
+.npm
+.gitignore
+.editorconfig
+certs
+nodemon.json
+node_modules
+npm-debug.log
