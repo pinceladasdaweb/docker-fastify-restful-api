@@ -50,6 +50,9 @@ typings/
 # Optional npm cache directory
 .npm
 
+# Nodemon
+.config
+
 # Optional eslint cache
 .eslintcache
 
