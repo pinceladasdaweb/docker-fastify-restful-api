@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  api:
+    container_name: fastify-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    command: npm run dev
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongo
+
+  mongo:
+    container_name: mongo
+    image: 'bitnami/mongodb:4.4'
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongodb_data:/bitnami/mongodb'
+    environment:
+      MONGODB_USERNAME: ${MONGODB_USERNAME}
+      MONGODB_PASSWORD: ${MONGODB_PASSWORD}
+      MONGODB_DATABASE: ${MONGODB_DATABASE}
+
+volumes:
+  mongodb_data:
+    driver: local

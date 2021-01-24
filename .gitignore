@@ -50,6 +50,9 @@ typings/
 # Optional npm cache directory
 .npm
 
+# Nodemon
+.config
+
 # Optional eslint cache
 .eslintcache
 
@@ -102,3 +105,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Mac
+.DS_Store
