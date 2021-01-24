@@ -1,0 +1,50 @@
+{
+  "name": "docker-fastify-boilerplate",
+  "version": "1.0.0",
+  "description": "Node.js RESTful API boilerplate using Docker, Docker Compose, Fastify and Mongodb",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "./node_modules/nodemon/bin/nodemon.js src/index.js",
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinceladasdaweb/docker-fastify-boilerplate.git"
+  },
+  "keywords": [
+    "docker",
+    "api",
+    "fastify",
+    "mongdb"
+  ],
+  "author": "Pedro Rogério",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pinceladasdaweb/docker-fastify-boilerplate/issues"
+  },
+  "homepage": "https://github.com/pinceladasdaweb/docker-fastify-boilerplate#readme",
+  "devDependencies": {
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.3",
+    "nodemon": "^2.0.7",
+    "standard": "^16.0.3"
+  },
+  "dependencies": {
+    "boom": "^7.3.0",
+    "dotenv": "^8.2.0",
+    "fastify": "^3.10.1",
+    "fastify-cors": "^5.1.0",
+    "fastify-helmet": "^5.1.0",
+    "mongoose": "^5.11.12",
+    "pino-pretty": "^4.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": "standard"
+  }
+}
