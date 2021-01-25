@@ -4,7 +4,9 @@ const app = async () => {
   const fastify = Fastify({
     bodyLimit: 1048576 * 2,
     logger: {
-      prettyPrint: true
+      prettyPrint: {
+        colorize: true
+      }
     }
   })
 
