@@ -15,7 +15,7 @@ async function dbConnector (fastify, options) {
 
     mongoose.set('debug', NODE_ENV === 'development')
 
-    const db = await mongoose
+    await mongoose
       .connect(url, {
         autoIndex: true,
         useCreateIndex: true,
@@ -23,10 +23,12 @@ async function dbConnector (fastify, options) {
         useFindAndModify: false,
         useUnifiedTopology: true
       })
-      .then(_ => fastify.log.info('\x1b[32m%s\x1b[0m', 'MongoDB is connected'))
-      .catch(err => fastify.log.error(err))
+      .then(data => {
+        fastify.log.info('\x1b[32m%s\x1b[0m', 'MongoDB is connected')
 
-    fastify.decorate('mongo', db)
+        fastify.decorate('mongo', data)
+      })
+      .catch(err => fastify.log.error(err))
   } catch (err) {
     fastify.log.error(err)
   }
