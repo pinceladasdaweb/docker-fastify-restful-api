@@ -5,7 +5,9 @@ const app = async () => {
     bodyLimit: 1048576 * 2,
     logger: {
       prettyPrint: {
-        colorize: true
+        colorize: true,
+        levelFirst: true,
+        ignore: 'time,pid,hostname'
       }
     }
   })
