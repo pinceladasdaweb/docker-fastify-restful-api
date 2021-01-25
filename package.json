@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "./node_modules/nodemon/bin/nodemon.js src/index.js",
     "start": "node src/index.js",
+    "standard:fix": "npx standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
