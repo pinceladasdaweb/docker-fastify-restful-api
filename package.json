@@ -32,11 +32,13 @@
     "standard": "^16.0.3"
   },
   "dependencies": {
+    "@sentry/node": "^6.0.2",
     "boom": "^7.3.0",
     "dotenv": "^8.2.0",
     "fastify": "^3.11.0",
     "fastify-cors": "^5.2.0",
     "fastify-helmet": "^5.1.0",
+    "fastify-plugin": "^3.0.0",
     "mongoose": "^5.11.13",
     "pino-pretty": "^4.3.0"
   },

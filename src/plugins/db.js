@@ -9,7 +9,7 @@ const {
 const mongoose = require('mongoose')
 const fastifyPlugin = require('fastify-plugin')
 
-async function dbConnector (fastify, options) {
+async function dbConnector (fastify, options, next) {
   try {
     const url = `mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}/${MONGODB_DATABASE}?authSource=${MONGODB_DATABASE}&retryWrites=true`
 
@@ -32,6 +32,8 @@ async function dbConnector (fastify, options) {
   } catch (err) {
     fastify.log.error(err)
   }
+
+  next()
 }
 
 module.exports = fastifyPlugin(dbConnector)
