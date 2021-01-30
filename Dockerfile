@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Running npm install
-RUN npm install
+RUN npm install --only=production
 
 # Copy the rest of your app's source code from your host to your image filesystem.
 COPY . .
@@ -29,4 +29,4 @@ USER nodeuser
 # Open the mapped port
 EXPOSE 3000
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "start" ]

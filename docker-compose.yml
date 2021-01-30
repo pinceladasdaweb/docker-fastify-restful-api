@@ -5,7 +5,7 @@ services:
     container_name: fastify-api
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - '3000:3000'
     command: npm run dev
