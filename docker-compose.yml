@@ -13,6 +13,9 @@ services:
       - .:/usr/src/app
     depends_on:
       - mongo
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.fastify.rule=Host(`fastify.localhost`)'
 
   mongo:
     container_name: mongo
@@ -26,6 +29,16 @@ services:
       MONGODB_USERNAME: ${MONGODB_USERNAME}
       MONGODB_PASSWORD: ${MONGODB_PASSWORD}
       MONGODB_DATABASE: ${MONGODB_DATABASE}
+
+  traefik:
+    container_name: traefik-api
+    image: traefik:v2.2
+    ports:
+      - '80:80'
+      - '8080:8080'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - './services/traefik/traefik.dev.toml:/etc/traefik/traefik.toml'
 
 volumes:
   mongodb_data:
