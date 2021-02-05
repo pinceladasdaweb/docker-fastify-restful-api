@@ -7,6 +7,24 @@ class RestRepository {
   }
 
   /**
+  * @param {Object} query
+  */
+  query (query = {}, options = {}) {
+    const labels = {
+      totalDocs: 'total',
+      totalPages: 'pages'
+    }
+
+    return this.model.paginate(query, {
+      ...options,
+      ...(options?.page ? { page: options.page } : { page: 1 }),
+      ...(options?.limit ? { limit: options.limit } : { limit: 100 }),
+      ...(options?.sort ? { sort: options.sort } : { sort: { _id: 1 } }),
+      customLabels: labels
+    })
+  }
+
+  /**
   *
   * @param {Object} data
   */
