@@ -17,9 +17,9 @@ const auth = async (request, reply) => {
       })
 
       reply.send({ token })
+    } else {
+      throw Unauthorized('Invalid email or password.')
     }
-
-    throw Unauthorized('Invalid email or password.')
   } catch (err) {
     throw boom.boomify(err)
   }
