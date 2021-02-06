@@ -38,7 +38,20 @@ const app = async () => {
       }
     }
   })
-  await fastify.register(require('fastify-helmet'), { contentSecurityPolicy: false })
+  await fastify.register(require('fastify-helmet'), {
+    contentSecurityPolicy: {
+      directives: {
+        baseUri: ['\'self\''],
+        defaultSrc: ['\'self\''],
+        scriptSrc: ['\'self\''],
+        objectSrc: ['\'self\''],
+        workerSrc: ['\'self\'', 'blob:'],
+        frameSrc: ['\'self\''],
+        formAction: ['\'self\''],
+        upgradeInsecureRequests: []
+      }
+    }
+  })
   await fastify.register(require('fastify-cors'), { origin: '*' })
   await fastify.register(require('./routes/api'), { prefix: 'api/v1' })
   await fastify.register(require('./hooks'))
