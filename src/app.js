@@ -1,5 +1,5 @@
 const Fastify = require('fastify')
-const { NODE_ENV } = require('./environment')
+const { NODE_ENV, JWT_SECRET } = require('./environment')
 
 const logger = {
   development: {
@@ -27,6 +27,7 @@ const app = async () => {
 
   await fastify.register(require('./plugins/db'))
   await fastify.register(require('./plugins/sentry'))
+  await fastify.register(require('fastify-jwt'), { secret: JWT_SECRET })
   await fastify.register(require('fastify-helmet'), { contentSecurityPolicy: false })
   await fastify.register(require('fastify-cors'), { origin: '*' })
   await fastify.register(require('./routes/api'), { prefix: 'api/v1' })
