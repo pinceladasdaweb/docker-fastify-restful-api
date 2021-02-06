@@ -1,7 +1,7 @@
-const userController = require('./user-controller')
+const usersController = require('./users-controller')
 const moviesController = require('./movies-controller')
 
 module.exports = {
-  userController,
+  usersController,
   moviesController
 }

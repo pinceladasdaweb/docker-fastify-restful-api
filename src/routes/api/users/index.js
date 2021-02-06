@@ -1,9 +1,9 @@
 const { createSchema, authSchema } = require('./schemas')
-const { userController } = require('../../../controllers')
+const { usersController } = require('../../../controllers')
 
 const userRoutes = async (app, options) => {
-  app.post('/auth', { schema: authSchema }, userController.auth)
-  app.post('/register', { schema: createSchema }, userController.register)
+  app.post('/auth', { schema: authSchema }, usersController.auth)
+  app.post('/register', { schema: createSchema }, usersController.register)
 }
 
 module.exports = userRoutes
