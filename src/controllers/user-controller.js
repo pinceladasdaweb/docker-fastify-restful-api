@@ -1,6 +1,7 @@
 const boom = require('boom')
 const bcrypt = require('bcryptjs')
 const { Users } = require('../models')
+const { Unauthorized } = require('http-errors')
 const { UsersRepository } = require('../repositories')
 
 const auth = async (request, reply) => {
@@ -17,6 +18,8 @@ const auth = async (request, reply) => {
 
       reply.send({ token })
     }
+
+    throw Unauthorized('Invalid email or password.')
   } catch (err) {
     throw boom.boomify(err)
   }
