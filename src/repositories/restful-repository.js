@@ -1,7 +1,7 @@
 /**
-*  Default RestRepository Interface
+*  Default RestfulRepository Interface
 */
-class RestRepository {
+class RestfulRepository {
   constructor (model) {
     this.model = model
   }
@@ -80,4 +80,4 @@ class RestRepository {
   }
 }
 
-module.exports = RestRepository
+module.exports = RestfulRepository
