@@ -2,10 +2,22 @@ const boom = require('boom')
 const { Movies } = require('../models')
 const { MoviesRepository } = require('../repositories')
 
+const list = async (request, reply) => {
+  try {
+    const { limit, page, sort } = request.query
+    const repository = new MoviesRepository(Movies)
+    const docs = await repository.query({}, { limit, page, sort })
+
+    reply.send(docs)
+  } catch (err) {
+    throw boom.boomify(err)
+  }
+}
+
 const create = async (request, reply) => {
   try {
-    const movie = new MoviesRepository(Movies)
-    const res = await movie.create(request.body)
+    const repository = new MoviesRepository(Movies)
+    const res = await repository.create(request.body)
 
     reply.code(201).send(res)
   } catch (err) {
@@ -14,5 +26,6 @@ const create = async (request, reply) => {
 }
 
 module.exports = {
+  list,
   create
 }
