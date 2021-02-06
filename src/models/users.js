@@ -44,4 +44,4 @@ Schema.plugin(mongooseDelete, {
   overrideMethods: true
 })
 
-module.exports = mongoose.model('users', Schema)
+module.exports = mongoose.model('Users', Schema)
