@@ -7,7 +7,7 @@ const create = async (request, reply) => {
     const movie = new MoviesRepository(Movies)
     const res = await movie.create(request.body)
 
-    reply.send(res)
+    reply.code(201).send(res)
   } catch (err) {
     throw boom.boomify(err)
   }
