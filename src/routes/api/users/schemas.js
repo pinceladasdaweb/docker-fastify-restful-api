@@ -1,4 +1,4 @@
-const bodySchema = {
+const bodyCreateSchema = {
   type: 'object',
   properties: {
     name: { type: 'string' },
@@ -11,7 +11,19 @@ const bodySchema = {
   required: ['name', 'email', 'password']
 }
 
-const responseSchema = {
+const bodyAuthSchema = {
+  type: 'object',
+  properties: {
+    email: {
+      type: 'string',
+      format: 'email'
+    },
+    password: { type: 'string' }
+  },
+  required: ['email', 'password']
+}
+
+const responseCreateSchema = {
   _id: { type: 'string' },
   deleted: { type: 'boolean' },
   name: { type: 'string' },
@@ -21,16 +33,31 @@ const responseSchema = {
   __v: { type: 'number' }
 }
 
+const responseAuthSchema = {
+  token: { type: 'string' }
+}
+
 const createSchema = {
-  body: bodySchema,
+  body: bodyCreateSchema,
   response: {
     201: {
       type: 'object',
-      properties: responseSchema
+      properties: responseCreateSchema
+    }
+  }
+}
+
+const authSchema = {
+  body: bodyAuthSchema,
+  response: {
+    200: {
+      type: 'object',
+      properties: responseAuthSchema
     }
   }
 }
 
 module.exports = {
+  authSchema,
   createSchema
 }
