@@ -41,6 +41,7 @@
     "fastify-helmet": "^5.1.0",
     "fastify-jwt": "^2.3.0",
     "fastify-plugin": "^3.0.0",
+    "http-errors": "^1.8.0",
     "mongoose": "^5.11.13",
     "mongoose-delete": "^0.5.3",
     "mongoose-paginate-v2": "^1.3.14",
