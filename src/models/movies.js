@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const slug = require('mongoose-slug-generator')
 const mongooseDelete = require('mongoose-delete')
-const mongooseTimestamp = require('mongoose-timestamp')
 const mongoosePaginate = require('mongoose-paginate-v2')
 const { genresEnum, languagesEnum, countryCodesEnum } = require('../enums')
 
@@ -75,12 +74,12 @@ const Schema = new mongoose.Schema({
     required: true
   }
 }, {
+  timestamps: true,
   usePushEach: true
 })
 
 Schema.plugin(slug)
 Schema.plugin(mongoosePaginate)
-Schema.plugin(mongooseTimestamp)
 Schema.plugin(mongooseDelete, {
   deletedAt: true,
   indexFields: true,

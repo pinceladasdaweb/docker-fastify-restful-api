@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
 const { SALT } = require('../environment')
 const mongooseDelete = require('mongoose-delete')
-const mongooseTimestamp = require('mongoose-timestamp')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
 /**
@@ -27,6 +26,7 @@ const Schema = new mongoose.Schema({
     required: true
   }
 }, {
+  timestamps: true,
   usePushEach: true
 })
 
@@ -37,7 +37,6 @@ Schema.pre('save', function (next) {
 })
 
 Schema.plugin(mongoosePaginate)
-Schema.plugin(mongooseTimestamp)
 Schema.plugin(mongooseDelete, {
   deletedAt: true,
   indexFields: true,
