@@ -33,11 +33,13 @@
   },
   "dependencies": {
     "@sentry/node": "^6.0.2",
+    "bcryptjs": "^2.4.3",
     "boom": "^7.3.0",
     "dotenv": "^8.2.0",
     "fastify": "^3.11.0",
     "fastify-cors": "^5.2.0",
     "fastify-helmet": "^5.1.0",
+    "fastify-jwt": "^2.3.0",
     "fastify-plugin": "^3.0.0",
     "mongoose": "^5.11.13",
     "mongoose-delete": "^0.5.3",
