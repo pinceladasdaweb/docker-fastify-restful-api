@@ -8,11 +8,11 @@ const auth = async (request, reply) => {
   try {
     const { email, password } = request.body
 
-    const user = new UsersRepository(Users)
-    const userInfo = await user.findOneBy('email', email)
+    const repository = new UsersRepository(Users)
+    const user = await repository.findOneBy('email', email)
 
-    if (userInfo && bcrypt.compareSync(password, userInfo.password)) {
-      const token = await reply.jwtSign({ id: userInfo._id, name: userInfo.name }, {
+    if (user && bcrypt.compareSync(password, user.password)) {
+      const token = await reply.jwtSign({ id: user._id, name: user.name }, {
         expiresIn: '7d'
       })
 
@@ -29,8 +29,8 @@ const register = async (request, reply) => {
   try {
     const { name, email, password } = request.body
 
-    const user = new UsersRepository(Users)
-    const res = await user.create({ name, email, password })
+    const repository = new UsersRepository(Users)
+    const res = await repository.create({ name, email, password })
 
     reply.code(201).send(res)
   } catch (err) {
