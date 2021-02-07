@@ -68,6 +68,15 @@ const listSchema = {
   }
 }
 
+const viewSchema = {
+  response: {
+    200: {
+      type: 'object',
+      properties: responseSchema
+    }
+  }
+}
+
 const createSchema = {
   body: bodyCreateSchema,
   response: {
@@ -78,7 +87,25 @@ const createSchema = {
   }
 }
 
+const updateSchema = {
+  body: {
+    type: 'object',
+    properties: {
+      ...commom,
+      slug: { type: 'string' }
+    }
+  },
+  response: {
+    200: {
+      type: 'object',
+      properties: responseSchema
+    }
+  }
+}
+
 module.exports = {
   listSchema,
-  createSchema
+  viewSchema,
+  createSchema,
+  updateSchema
 }
