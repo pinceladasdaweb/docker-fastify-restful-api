@@ -37,8 +37,9 @@ const bodyCreateSchema = {
     'description', 'languages', 'country', 'imdbID']
 }
 
-const responseCreateSchema = {
+const responseSchema = {
   _id: { type: 'string' },
+  slug: { type: 'string' },
   ...commom,
   deleted: { type: 'boolean' },
   updatedAt: { type: 'string' },
@@ -46,16 +47,65 @@ const responseCreateSchema = {
   __v: { type: 'number' }
 }
 
+const listSchema = {
+  response: {
+    200: {
+      type: 'object',
+      properties: {
+        docs: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: responseSchema
+          }
+        },
+        total: { type: 'number' },
+        limit: { type: 'number' },
+        pages: { type: 'number' },
+        page: { type: 'number' }
+      }
+    }
+  }
+}
+
+const viewSchema = {
+  response: {
+    200: {
+      type: 'object',
+      properties: responseSchema
+    }
+  }
+}
+
 const createSchema = {
   body: bodyCreateSchema,
   response: {
     201: {
       type: 'object',
-      properties: responseCreateSchema
+      properties: responseSchema
+    }
+  }
+}
+
+const updateSchema = {
+  body: {
+    type: 'object',
+    properties: {
+      ...commom,
+      slug: { type: 'string' }
+    }
+  },
+  response: {
+    200: {
+      type: 'object',
+      properties: responseSchema
     }
   }
 }
 
 module.exports = {
-  createSchema
+  listSchema,
+  viewSchema,
+  createSchema,
+  updateSchema
 }

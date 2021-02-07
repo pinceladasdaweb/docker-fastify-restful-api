@@ -27,8 +27,31 @@ const app = async () => {
 
   await fastify.register(require('./plugins/db'))
   await fastify.register(require('./plugins/sentry'))
-  await fastify.register(require('fastify-jwt'), { secret: JWT_SECRET })
-  await fastify.register(require('fastify-helmet'), { contentSecurityPolicy: false })
+  await fastify.register(require('fastify-jwt'), {
+    secret: JWT_SECRET,
+    messages: {
+      badRequestErrorMessage: 'Format is Authorization: Bearer [token]',
+      noAuthorizationInHeaderMessage: 'Autorization header is missing!',
+      authorizationTokenExpiredMessage: 'Authorization token expired',
+      authorizationTokenInvalid: (err) => {
+        return `Authorization token is invalid: ${err.message}`
+      }
+    }
+  })
+  await fastify.register(require('fastify-helmet'), {
+    contentSecurityPolicy: {
+      directives: {
+        baseUri: ['\'self\''],
+        defaultSrc: ['\'self\''],
+        scriptSrc: ['\'self\''],
+        objectSrc: ['\'self\''],
+        workerSrc: ['\'self\'', 'blob:'],
+        frameSrc: ['\'self\''],
+        formAction: ['\'self\''],
+        upgradeInsecureRequests: []
+      }
+    }
+  })
   await fastify.register(require('fastify-cors'), { origin: '*' })
   await fastify.register(require('./routes/api'), { prefix: 'api/v1' })
   await fastify.register(require('./hooks'))
