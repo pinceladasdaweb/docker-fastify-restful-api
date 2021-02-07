@@ -15,7 +15,7 @@ services:
       - mongo
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.fastify.rule=Host(`fastify.localhost`)'
+      - 'traefik.http.routers.api.rule=Host(`fastify.localhost`)'
 
   mongo:
     container_name: mongo
