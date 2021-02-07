@@ -15,7 +15,8 @@ services:
       - mongo
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.api.rule=Host(`fastify.localhost`)'
+      - 'traefik.http.routers.api.rule=Host(`fastify.localhost`) && PathPrefix(`/api/v1`)'
+      - 'traefik.http.routers.api.entrypoints=http'
 
   mongo:
     container_name: mongo
@@ -29,16 +30,21 @@ services:
       MONGODB_USERNAME: ${MONGODB_USERNAME}
       MONGODB_PASSWORD: ${MONGODB_PASSWORD}
       MONGODB_DATABASE: ${MONGODB_DATABASE}
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.mongo.entrypoints=http'
 
   traefik:
     container_name: traefik-api
     image: traefik:v2.2
+    command: --api.insecure=true --providers.docker --log.level=debug --accesslog=true
     ports:
       - '80:80'
       - '8080:8080'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
-      - './services/traefik/traefik.dev.toml:/etc/traefik/traefik.toml'
+    labels:
+      - 'traefik.http.routers.traefik.entrypoints=http'
 
 volumes:
   mongodb_data:
