@@ -1,9 +1,10 @@
 const env = process.env
 const dotenv = require('dotenv')
+const { deepFreeze } = require('../utils')
 
 dotenv.config()
 
-const enviroment = Object.freeze({
+const enviroment = deepFreeze({
   /* GENERAL */
   NODE_ENV: env.NODE_ENV,
   APP_PORT: env.APP_PORT,
