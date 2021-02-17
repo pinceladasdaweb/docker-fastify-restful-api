@@ -4,8 +4,10 @@
 .idea
 .config
 .npm
+.github
 .DS_Store
 .gitignore
+.scannerwork
 .editorconfig
 certs
 LICENSE
