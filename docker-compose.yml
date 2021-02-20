@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   api:
-    container_name: fastify-api
+    container_name: api
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -34,8 +34,42 @@ services:
       - 'traefik.enable=true'
       - 'traefik.http.routers.mongo.entrypoints=http'
 
+  postgresql:
+    container_name: postgresql
+    image: 'bitnami/postgresql:9.6'
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgresql_data:/bitnami/postgresql
+    environment:
+      POSTGRESQL_USER: ${POSTGRESQL_USER}
+      POSTGRESQL_DATABASE: ${POSTGRESQL_DATABASE}
+      POSTGRESQL_PASSWORD: ${POSTGRESQL_PASSWORD}
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.postgresql.entrypoints=http'
+
+  sonarqube:
+    container_name: sonarqube
+    image: bitnami/sonarqube:latest
+    depends_on:
+      - postgresql
+    ports:
+      - '9000:9000'
+    volumes:
+      - sonarqube_data:/bitnami
+    environment:
+      SONARQUBE_DATABASE_USER: ${POSTGRESQL_USER}
+      SONARQUBE_DATABASE_NAME: ${POSTGRESQL_DATABASE}
+      SONARQUBE_DATABASE_PASSWORD: ${POSTGRESQL_PASSWORD}
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.sonarqube.rule=Host(`sonarqube.localhost`)'
+      - 'traefik.http.routers.sonarqube.entrypoints=http'
+
   traefik:
-    container_name: traefik-api
+    container_name: traefik
     image: traefik:v2.2
     command: --api.insecure=true --providers.docker --log.level=debug --accesslog=true
     ports:
@@ -47,5 +81,9 @@ services:
       - 'traefik.http.routers.traefik.entrypoints=http'
 
 volumes:
+  postgresql_data:
+    driver: local
+  sonarqube_data:
+    driver: local
   mongodb_data:
     driver: local
