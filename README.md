@@ -18,7 +18,13 @@ docker run --rm -it \
 node:15-alpine npm i
 ```
 
-Windows users should switch the PWD variable to your current directory. Or if you have node installed in your system, install using npm:
+Windows users should switch the PWD variable to your current directory. Alternatively, you can run npm install as follows:
+
+```sh
+docker-compose run api npm install
+```
+
+Or if you have node installed in your system, install using npm:
 
 ```sh
 npm install
