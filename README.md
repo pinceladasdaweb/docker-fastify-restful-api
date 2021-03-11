@@ -36,6 +36,7 @@ npm install
 
 2. Edit your hosts file with:
   >127.0.0.1 fastify.localhost
+  >
   >127.0.0.1 sonarqube.localhost
 
 ## Run
