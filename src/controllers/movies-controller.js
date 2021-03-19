@@ -1,4 +1,4 @@
-const boom = require('boom')
+const boom = require('@hapi/boom')
 const { Movies } = require('../models')
 const { isValidObjectId } = require('mongoose')
 const { MoviesRepository } = require('../repositories')
