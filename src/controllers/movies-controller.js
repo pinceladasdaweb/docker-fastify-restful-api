@@ -10,7 +10,7 @@ const list = async (request, reply) => {
     const repository = new MoviesRepository(Movies)
     const docs = await repository.query({}, { limit, page, sort })
 
-    reply.send(docs)
+    return Array.isArray(docs.docs) && docs.docs.length > 0 ? reply.send(docs) : reply.code(204).send()
   } catch (err) {
     throw boom.boomify(err)
   }
