@@ -1,4 +1,4 @@
-const boom = require('boom')
+const boom = require('@hapi/boom')
 const bcrypt = require('bcryptjs')
 const { Users } = require('../models')
 const { Unauthorized } = require('http-errors')

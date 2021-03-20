@@ -3,9 +3,8 @@ version: '3.4'
 services:
   api:
     container_name: api
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
+    image: node:15-alpine
+    working_dir: /usr/src/app
     ports:
       - '3000:3000'
     command: npm run dev
