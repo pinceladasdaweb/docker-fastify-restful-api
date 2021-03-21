@@ -8,6 +8,7 @@ const enviroment = deepFreeze({
   /* GENERAL */
   NODE_ENV: env.NODE_ENV,
   APP_PORT: env.APP_PORT,
+  SALT: env.SALT,
   JWT_SECRET: env.JWT_SECRET,
   /* DATABASE */
   MONGODB_HOST: env.MONGODB_HOST,
