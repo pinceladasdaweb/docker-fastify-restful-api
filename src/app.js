@@ -56,6 +56,11 @@ const app = async () => {
   await fastify.register(require('./routes/api'), { prefix: 'api/v1' })
   await fastify.register(require('./hooks'))
 
+  fastify.setErrorHandler((err, request, reply) => {
+    this.log.error(err)
+    reply.send(err)
+  })
+
   return fastify
 }
 
