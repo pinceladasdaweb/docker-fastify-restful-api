@@ -1,5 +1,5 @@
 const Fastify = require('fastify')
-const { NODE_ENV, JWT_SECRET } = require('./environment')
+const { LOG_LEVEL, NODE_ENV, JWT_SECRET } = require('./environment')
 
 const logger = {
   development: {
@@ -7,7 +7,8 @@ const logger = {
       colorize: true,
       levelFirst: true,
       ignore: 'time,pid,hostname'
-    }
+    },
+    level: LOG_LEVEL
   },
   production: {
     formatters: {
@@ -15,7 +16,8 @@ const logger = {
         return { level }
       }
     },
-    timestamp: () => `,"time":"${new Date(Date.now()).toISOString()}"`
+    timestamp: () => `,"time":"${new Date(Date.now()).toISOString()}"`,
+    level: LOG_LEVEL
   }
 }
 
@@ -56,9 +58,26 @@ const app = async () => {
   await fastify.register(require('./routes/api'), { prefix: 'api/v1' })
   await fastify.register(require('./hooks'))
 
+  fastify.setNotFoundHandler((request, reply) => {
+    fastify.log.debug(`Route not found: ${request.method}:${request.raw.url}`)
+
+    reply.status(404).send({
+      statusCode: 404,
+      error: 'Not Found',
+      message: `Route ${request.method}:${request.raw.url} not found`
+    })
+  })
+
   fastify.setErrorHandler((err, request, reply) => {
-    this.log.error(err)
-    reply.send(err)
+    fastify.log.debug(`Request url: ${request.raw.url}`)
+    fastify.log.debug(`Payload: ${request.body}`)
+    fastify.log.error(`Error occurred: ${err}`)
+
+    reply.status(500).send({
+      statusCode: 500,
+      error: 'Internal server error',
+      message: 'Error occurred during request'
+    })
   })
 
   return fastify
