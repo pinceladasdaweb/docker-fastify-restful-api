@@ -6,6 +6,7 @@ dotenv.config()
 
 const enviroment = deepFreeze({
   /* GENERAL */
+  LOG_LEVEL: env.LOG_LEVEL,
   NODE_ENV: env.NODE_ENV,
   APP_PORT: env.APP_PORT,
   SALT: env.SALT,
