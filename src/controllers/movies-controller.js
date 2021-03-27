@@ -21,14 +21,14 @@ const view = async (request, reply) => {
     const { id } = request.params
 
     if (!isValidObjectId(id)) {
-      throw UnprocessableEntity()
+      return UnprocessableEntity()
     }
 
     const repository = new MoviesRepository(Movies)
     const data = await repository.findById(id)
 
     if (!data) {
-      throw NotFound()
+      return NotFound()
     }
 
     reply.send(data)
@@ -53,14 +53,14 @@ const update = async (request, reply) => {
     const { id } = request.params
 
     if (!isValidObjectId(id)) {
-      throw UnprocessableEntity()
+      return UnprocessableEntity()
     }
 
     const repository = new MoviesRepository(Movies)
     const data = await repository.findById(id)
 
     if (!data) {
-      throw NotFound()
+      return NotFound()
     }
 
     const res = await repository.findByIdAndUpdate(id, request.body, { new: true })
@@ -76,14 +76,14 @@ const exclude = async (request, reply) => {
     const { id } = request.params
 
     if (!isValidObjectId(id)) {
-      throw UnprocessableEntity()
+      return UnprocessableEntity()
     }
 
     const repository = new MoviesRepository(Movies)
     const data = await repository.findById(id)
 
     if (!data) {
-      throw NotFound()
+      return NotFound()
     }
 
     await repository.deleteById(id)
