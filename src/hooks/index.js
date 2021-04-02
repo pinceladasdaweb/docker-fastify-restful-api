@@ -5,7 +5,10 @@ const fastifyPlugin = require('fastify-plugin')
 module.exports = fastifyPlugin((fastify, options, next) => {
   fastify.addHook('onError', (request, reply, error, done) => {
     if (NODE_ENV !== 'development') {
-      Sentry.captureException(error)
+      Sentry.withScope(scope => {
+        scope.setTag('path', request.raw.url)
+        Sentry.captureException(error)
+      })
     }
 
     done()
