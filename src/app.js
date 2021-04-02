@@ -73,8 +73,10 @@ const app = async () => {
     fastify.log.debug(`Payload: ${request.body}`)
     fastify.log.error(`Error occurred: ${err}`)
 
-    reply.status(500).send({
-      statusCode: err.statusCode ?? 500,
+    const code = err.statusCode ?? 500
+
+    reply.status(code).send({
+      statusCode: code,
       error: err.name ?? 'Internal server error',
       message: err.message ?? err
     })
