@@ -47,15 +47,31 @@ In the root of project, run:
 docker-compose up
 ```
 
-Acess this url on your browser:
+## API Request
 
-```sh
-http://fastify.localhost/api/v1
+| Endpoint                           | HTTP Method             | Description             |
+| ---------------------------------- | :---------------------: | :---------------------: |
+| `/api/v1`                          | `GET`                   | `Healthcheck`           |
+| `/api/v1/users/register`           | `POST`                  | `Adds a new user`       |
+| `/api/v1/users/auth`               | `POST`                  | `Authenticate user`     |
+| `/api/v1/movies`                   | `GET`                   | `List all movies`       |
+| `/api/v1/movies/:id`               | `GET`                   | `Get movie`             |
+| `/api/v1/movies`                   | `POST`                  | `Adds a new movie`      |
+| `/api/v1/movies/:id`               | `PATCH`                 | `Update a movie`        |
+| `/api/v1/movies/:id`               | `DELETE`                | `Delete a movie`        |
+
+
+## Test API locally using curl
+
+- #### Healthcheck
+
+`Request`
+```bash
+curl -i --request GET 'http://fastify.localhost/api/v1'
 ```
 
-If everything is ok, you will see the following message:
-
-```json
+`Response`
+```bash
 {
   "message": "Fastify API is on fire"
 }
