@@ -15,7 +15,7 @@ Install packages using docker:
 docker run --rm -it \
 -v ${PWD}:/usr/src/app \
 -w /usr/src/app \
-node:15-alpine npm i
+node:16-alpine npm i
 ```
 
 Windows users should switch the PWD variable to your current directory. Alternatively, you can run npm install as follows:
