@@ -23,6 +23,17 @@ const logger = {
 
 const app = async () => {
   const fastify = Fastify({
+    ajv: {
+      customOptions: {
+        allErrors: true,
+        jsonPointers: true,
+        $data: true
+      },
+      plugins: [
+        require('ajv-errors'),
+        require('ajv-keywords')
+      ]
+    },
     bodyLimit: 1048576 * 2,
     logger: logger[NODE_ENV]
   })
