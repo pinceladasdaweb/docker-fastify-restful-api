@@ -1,5 +1,5 @@
 const Fastify = require('fastify')
-const { LOG_LEVEL, NODE_ENV, JWT_SECRET } = require('./environment')
+const { LOG_LEVEL, NODE_ENV } = require('./environment')
 
 const logger = {
   development: {
@@ -39,18 +39,8 @@ const app = async () => {
   })
 
   await fastify.register(require('./plugins/db'))
+  await fastify.register(require('./plugins/auth'))
   await fastify.register(require('./plugins/sentry'))
-  await fastify.register(require('fastify-jwt'), {
-    secret: JWT_SECRET,
-    messages: {
-      badRequestErrorMessage: 'Format is Authorization: Bearer [token]',
-      noAuthorizationInHeaderMessage: 'Autorization header is missing!',
-      authorizationTokenExpiredMessage: 'Authorization token expired',
-      authorizationTokenInvalid: (err) => {
-        return `Authorization token is invalid: ${err.message}`
-      }
-    }
-  })
   await fastify.register(require('fastify-helmet'), {
     contentSecurityPolicy: {
       directives: {
