@@ -1,4 +1,4 @@
-FROM node:15-alpine
+FROM node:16-alpine
 
 LABEL maintainer="Pedro Rogério"
 
@@ -29,4 +29,4 @@ USER nodeuser
 # Open the mapped port
 EXPOSE 3000
 
-CMD [ "npm", "start" ]
+CMD [ "node", "src/index.js" ]

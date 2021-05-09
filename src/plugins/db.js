@@ -24,7 +24,7 @@ async function dbConnector (fastify, options, next) {
         useUnifiedTopology: true
       })
       .then(data => {
-        fastify.log.info('\x1b[32m%s\x1b[0m', 'MongoDB is connected')
+        fastify.log.info('MongoDB is connected')
 
         fastify.decorate('mongo', data)
       })
