@@ -11,7 +11,7 @@ module.exports = fastifyPlugin((fastify, options, next) => {
     enabled: !!SENTRY_DSN
   })
 
-  fastify.log.info('\x1b[32m%s\x1b[0m', 'Sentry is loaded')
+  fastify.log.info('Sentry is loaded')
 
   next()
 })
