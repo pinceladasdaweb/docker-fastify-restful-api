@@ -112,6 +112,26 @@ const createSchema = {
 }
 
 const updateSchema = {
+  params: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+        regexp: '/^(0x|0h)?[0-9A-F]+$/i',
+        minLength: 24,
+        maxLength: 24
+      }
+    },
+    required: ['id'],
+    errorMessage: {
+      required: {
+        id: 'id is required.'
+      },
+      properties: {
+        id: 'id be match a ObjectId.'
+      }
+    }
+  },
   body: {
     type: 'object',
     properties: {
