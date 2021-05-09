@@ -7,7 +7,10 @@ const {
 const commom = {
   title: { type: 'string' },
   year: { type: 'number' },
-  releasedAt: { type: 'string' },
+  releasedAt: {
+    type: 'string',
+    format: 'date-time'
+  },
   genres: {
     type: 'array',
     items: {
@@ -26,7 +29,10 @@ const commom = {
       enum: languagesEnum
     }
   },
-  country: { type: 'string', enum: countryCodesEnum },
+  country: {
+    type: 'string',
+    enum: countryCodesEnum
+  },
   imdbID: { type: 'string' }
 }
 
@@ -34,7 +40,25 @@ const bodyCreateSchema = {
   type: 'object',
   properties: commom,
   required: ['title', 'year', 'releasedAt', 'genres', 'director', 'writers', 'actors',
-    'description', 'languages', 'country', 'imdbID']
+    'description', 'languages', 'country', 'imdbID'],
+  errorMessage: {
+    required: {
+      title: 'title is required.',
+      year: 'year is required.',
+      releasedAt: 'releasedAt is required.',
+      genres: 'genres is required.',
+      director: 'director is required.',
+      writers: 'writers is required.',
+      actors: 'actors is required.',
+      description: 'description is required.',
+      languages: 'languages is required.',
+      country: 'country is required.',
+      imdbID: 'imdbID is required.'
+    },
+    properties: {
+      releasedAt: 'should be match a valid date-time.'
+    }
+  }
 }
 
 const responseSchema = {

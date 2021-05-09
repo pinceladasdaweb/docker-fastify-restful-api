@@ -8,7 +8,17 @@ const bodyCreateSchema = {
     },
     password: { type: 'string' }
   },
-  required: ['name', 'email', 'password']
+  required: ['name', 'email', 'password'],
+  errorMessage: {
+    required: {
+      name: 'name is required.',
+      email: 'email is required.',
+      password: 'password is required.'
+    },
+    properties: {
+      email: 'should be match a email.'
+    }
+  }
 }
 
 const bodyAuthSchema = {
@@ -20,7 +30,16 @@ const bodyAuthSchema = {
     },
     password: { type: 'string' }
   },
-  required: ['email', 'password']
+  required: ['email', 'password'],
+  errorMessage: {
+    required: {
+      email: 'email is required.',
+      password: 'password is required.'
+    },
+    properties: {
+      email: 'should be match a email.'
+    }
+  }
 }
 
 const responseCreateSchema = {
