@@ -14,14 +14,10 @@ RUN npm install --only=production
 # Copy the rest of your app's source code from your host to your image filesystem.
 COPY . .
 
-# Create a user group 'nodegroup'
-RUN addgroup -S nodegroup
-
-# Create a user 'nodeuser' under 'nodegroup'
-RUN adduser -S -D -h /usr/src/app nodeuser nodegroup
-
-# Chown all the files to the app user.
-RUN chown -R nodeuser:nodegroup /usr/src
+# Create a user group 'nodegroup', create a user 'nodeuser' under 'nodegroup' and chown all the files to the app user.
+RUN addgroup -S nodegroup && \
+    adduser -S -D -h /usr/src/app nodeuser nodegroup && \
+    chown -R nodeuser:nodegroup /usr/src
 
 # Switch to 'nodeuser'
 USER nodeuser

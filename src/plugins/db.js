@@ -16,13 +16,7 @@ async function dbConnector (fastify, options, next) {
     mongoose.set('debug', NODE_ENV === 'development')
 
     await mongoose
-      .connect(url, {
-        autoIndex: true,
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true
-      })
+      .connect(url, { autoIndex: true })
       .then(data => {
         fastify.log.info('MongoDB is connected')
 
