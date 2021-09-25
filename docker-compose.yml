@@ -70,7 +70,7 @@ services:
 
   traefik:
     container_name: traefik
-    image: traefik:v2.4
+    image: traefik:v2.5.3
     command: --api.insecure=true --providers.docker --log.level=debug --accesslog=true
     ports:
       - '80:80'
