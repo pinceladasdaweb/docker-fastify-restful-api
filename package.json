@@ -1,6 +1,6 @@
 {
   "name": "docker-fastify-boilerplate",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Node.js RESTful API boilerplate using Docker, Docker Compose, Fastify and Mongodb",
   "main": "src/index.js",
   "scripts": {
@@ -38,13 +38,13 @@
     "ajv-keywords": "^3.5.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
-    "fastify": "^3.21.6",
+    "fastify": "^3.22.0",
     "fastify-cors": "^6.0.2",
     "fastify-helmet": "^5.3.2",
     "fastify-jwt": "^3.1.0",
     "fastify-plugin": "^3.0.0",
     "http-errors": "^1.8.0",
-    "mongoose": "^6.0.7",
+    "mongoose": "^6.0.8",
     "mongoose-delete": "^0.5.4",
     "mongoose-paginate-v2": "^1.4.2",
     "mongoose-slug-generator": "^1.0.4",
