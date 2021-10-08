@@ -27,13 +27,13 @@
   "homepage": "https://github.com/pinceladasdaweb/docker-fastify-boilerplate#readme",
   "devDependencies": {
     "husky": "^4.3.8",
-    "lint-staged": "^11.1.2",
+    "lint-staged": "^11.2.0",
     "nodemon": "^2.0.13",
-    "standard": "^16.0.3"
+    "standard": "^16.0.4"
   },
   "dependencies": {
     "@hapi/boom": "9.1.4",
-    "@sentry/node": "^6.13.2",
+    "@sentry/node": "^6.13.3",
     "ajv-errors": "^1.0.1",
     "ajv-keywords": "^3.5.2",
     "bcryptjs": "^2.4.3",
@@ -44,7 +44,7 @@
     "fastify-jwt": "^3.1.0",
     "fastify-plugin": "^3.0.0",
     "http-errors": "^1.8.0",
-    "mongoose": "^6.0.8",
+    "mongoose": "^6.0.9",
     "mongoose-delete": "^0.5.4",
     "mongoose-paginate-v2": "^1.4.2",
     "mongoose-slug-generator": "^1.0.4",
