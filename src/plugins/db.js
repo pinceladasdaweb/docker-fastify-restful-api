@@ -1,22 +1,17 @@
-const {
-  NODE_ENV,
-  MONGODB_HOST,
-  MONGODB_USERNAME,
-  MONGODB_PASSWORD,
-  MONGODB_DATABASE
-} = require('../environment')
-
 const mongoose = require('mongoose')
+const { fromEnv } = require('../utils')
 const fastifyPlugin = require('fastify-plugin')
 
 async function dbConnector (fastify, options, next) {
   try {
-    const url = `mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}/${MONGODB_DATABASE}?authSource=${MONGODB_DATABASE}&retryWrites=true`
+    const url = `mongodb${JSON.parse(fromEnv('MONGODB_SRV').toLowerCase()) ? '+srv' : ''}://${fromEnv('MONGODB_USERNAME')}:${fromEnv('MONGODB_PASSWORD')}@${fromEnv('MONGODB_HOST')}/${fromEnv('MONGODB_DATABASE')}?retryWrites=true&w=majority`
 
-    mongoose.set('debug', NODE_ENV === 'development')
+    mongoose.set('debug', fromEnv('NODE_ENV') === 'development')
 
     await mongoose
-      .connect(url, { autoIndex: true })
+      .connect(url, {
+        autoIndex: true
+      })
       .then(data => {
         fastify.log.info('MongoDB is connected')
 

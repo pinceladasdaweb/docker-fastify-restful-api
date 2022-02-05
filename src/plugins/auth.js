@@ -1,9 +1,9 @@
+const { fromEnv } = require('../utils')
 const fastifyPlugin = require('fastify-plugin')
-const { JWT_SECRET } = require('../environment')
 
-module.exports = fastifyPlugin(async function(fastify, opts) {
+module.exports = fastifyPlugin(async function (fastify, opts) {
   fastify.register(require('fastify-jwt'), {
-    secret: JWT_SECRET,
+    secret: fromEnv('JWT_SECRET'),
     messages: {
       badRequestErrorMessage: 'Format is Authorization: Bearer [token]',
       noAuthorizationInHeaderMessage: 'Autorization header is missing!',
@@ -14,7 +14,7 @@ module.exports = fastifyPlugin(async function(fastify, opts) {
     }
   })
 
-  fastify.decorate('authenticate', async function(request, reply) {
+  fastify.decorate('authenticate', async function (request, reply) {
     try {
       await request.jwtVerify()
     } catch (err) {

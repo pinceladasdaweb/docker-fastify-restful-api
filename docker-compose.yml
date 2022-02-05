@@ -3,7 +3,7 @@ version: '3.7'
 services:
   api:
     container_name: api
-    image: node:16-alpine
+    image: node:16.13.2-alpine
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
@@ -30,6 +30,7 @@ services:
       MONGODB_USERNAME: ${MONGODB_USERNAME}
       MONGODB_PASSWORD: ${MONGODB_PASSWORD}
       MONGODB_DATABASE: ${MONGODB_DATABASE}
+      MONGODB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.mongo.entrypoints=http'

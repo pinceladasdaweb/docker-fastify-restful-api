@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
-const { SALT } = require('../environment')
+const { fromEnv } = require('../utils')
 const mongooseDelete = require('mongoose-delete')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
@@ -31,7 +31,7 @@ const Schema = new mongoose.Schema({
 })
 
 Schema.pre('save', function (next) {
-  this.password = bcrypt.hashSync(this.password, parseInt(SALT, 10))
+  this.password = bcrypt.hashSync(this.password, parseInt(fromEnv('SALT'), 10))
 
   next()
 })

@@ -1,27 +1,19 @@
-const { app: server } = require('./app')
-const { APP_PORT } = require('./environment')
+const { build } = require('./app')
+const { fromEnv, terminate } = require('./utils')
 
-server()
+build()
   .then(app => {
-    app.listen(APP_PORT, '0.0.0.0')
+    app.listen(fromEnv('APP_PORT'), '0.0.0.0')
       .then(_ => {
-        process.on('SIGINT', () => {
-          app.mongo.connection.close()
-          app.close()
-          process.exit(0)
+        const exitHandler = terminate(app, {
+          coredump: false,
+          timeout: 500
         })
-          .on('SIGTERM', () => {
-            app.mongo.connection.close()
-            app.close()
-            process.exit(0)
-          })
-          .on('uncaughtException', err => {
-            console.error(err.stack)
-            process.exit(1)
-          })
-          .on('unhandledRejection', (reason, promise) => {
-            console.error(reason, `Unhandled rejection at Promise: ${promise}`)
-          })
+
+        process.on('uncaughtException', exitHandler(1, 'Unexpected Error'))
+        process.on('unhandledRejection', exitHandler(1, 'Unhandled Promise'))
+        process.on('SIGTERM', exitHandler(0, 'SIGTERM'))
+        process.on('SIGINT', exitHandler(0, 'SIGINT'))
       })
       .catch(err => {
         console.log('Error starting server: ', err)

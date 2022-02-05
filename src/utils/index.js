@@ -1,7 +1,9 @@
 const Logger = require('./logger')
-const deepFreeze = require('./deep-freeze')
+const fromEnv = require('./fromenv')
+const terminate = require('./terminate')
 
 module.exports = {
   Logger,
-  deepFreeze
+  fromEnv,
+  terminate
 }

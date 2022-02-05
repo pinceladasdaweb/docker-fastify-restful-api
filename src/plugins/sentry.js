@@ -1,17 +1,19 @@
 const Sentry = require('@sentry/node')
+const { fromEnv } = require('../utils')
 const fastifyPlugin = require('fastify-plugin')
 const { name, version } = require('../../package.json')
-const { NODE_ENV, SENTRY_DSN } = require('../environment')
 
 module.exports = fastifyPlugin((fastify, options, next) => {
+  const DSN = fromEnv('SENTRY_DSN')
+
   Sentry.init({
-    dsn: SENTRY_DSN,
-    environment: NODE_ENV,
+    dsn: DSN,
+    environment: fromEnv('NODE_ENV'),
     release: `${name}@${version}`,
-    enabled: !!SENTRY_DSN
+    enabled: !!fromEnv('SENTRY_DSN')
   })
 
-  fastify.log.info('Sentry is loaded')
+  !!fromEnv('SENTRY_DSN') && fastify.log.info('Sentry is loaded')
 
   next()
 })
