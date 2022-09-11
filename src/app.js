@@ -1,38 +1,16 @@
 const Fastify = require('fastify')
-const { fromEnv } = require('./utils')
+const { Logger } = require('./utils')
 const { NOT_FOUND, INTERNAL_SERVER_ERROR } = require('./errors')
-
-const logsConfig = {
-  formatters: {
-    level (level) {
-      return { level }
-    }
-  },
-  timestamp: () => `,"time":"${new Date(Date.now()).toISOString()}"`,
-  level: fromEnv('LOG_LEVEL')
-}
-
-const logger = {
-  development: {
-    prettyPrint: {
-      colorize: true,
-      levelFirst: true,
-      ignore: 'time,pid,hostname'
-    },
-    level: fromEnv('LOG_LEVEL')
-  },
-  staging: logsConfig,
-  production: logsConfig
-}
 
 const build = async () => {
   const fastify = Fastify({
-    bodyLimit: 1048576 * 2,
-    logger: logger[fromEnv('NODE_ENV')]
+    logger: Logger,
+    trustProxy: true,
+    bodyLimit: 1048576 * 10
   })
 
-  await fastify.register(require('fastify-cors'), { origin: '*' })
-  await fastify.register(require('fastify-helmet'), {
+  await fastify.register(require('@fastify/cors'), { origin: '*' })
+  await fastify.register(require('@fastify/helmet'), {
     contentSecurityPolicy: {
       directives: {
         baseUri: ['\'self\''],

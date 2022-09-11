@@ -3,7 +3,7 @@
 Node.js RESTful API boilerplate using Traefik, Docker, Docker Compose, Fastify, JWT and Mongodb.
 
 ## Requirements
-1. Node.js >= 14
+1. Node.js >= 16
 2. Docker
 3. Docker compose
 
@@ -103,9 +103,8 @@ http://localhost:8080
 
 ![](/traefik.png)
 
-Happy coding!
-
-
-### Infrastructure model
+## Infrastructure model
 
 ![Infrastructure model](.infragenie/infrastructure_model.png)
+
+Happy coding!

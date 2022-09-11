@@ -3,11 +3,19 @@ version: '3.7'
 services:
   api:
     container_name: api
-    image: node:16.14.0-alpine
+    image: node:16.17.0-alpine
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
-    command: npm run dev
+    command: >
+      /bin/sh -c "
+        echo Waiting for mongodb service start...;
+        while ! nc -z mongo 27017;
+        do
+          sleep 1;
+        done;
+        npm run dev
+      "
     init: true
     volumes:
       - .:/usr/src/app

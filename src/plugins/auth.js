@@ -2,7 +2,7 @@ const { fromEnv } = require('../utils')
 const fastifyPlugin = require('fastify-plugin')
 
 module.exports = fastifyPlugin(async function (fastify, opts) {
-  fastify.register(require('fastify-jwt'), {
+  fastify.register(require('@fastify/jwt'), {
     secret: fromEnv('JWT_SECRET'),
     messages: {
       badRequestErrorMessage: 'Format is Authorization: Bearer [token]',
