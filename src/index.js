@@ -3,7 +3,7 @@ const { fromEnv, terminate } = require('./utils')
 
 build()
   .then(app => {
-    app.listen(fromEnv('APP_PORT'), '0.0.0.0')
+    app.listen({ port: fromEnv('APP_PORT'), host: '0.0.0.0' })
       .then(_ => {
         const exitHandler = terminate(app, {
           coredump: false,
