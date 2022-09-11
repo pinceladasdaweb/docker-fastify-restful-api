@@ -104,3 +104,8 @@ http://localhost:8080
 ![](/traefik.png)
 
 Happy coding!
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
