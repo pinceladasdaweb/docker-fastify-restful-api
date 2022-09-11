@@ -1,4 +1,4 @@
-FROM node:16.14.0-alpine
+FROM node:16.17.0-alpine
 
 LABEL maintainer="Pedro Rogério"
 
@@ -6,23 +6,18 @@ LABEL maintainer="Pedro Rogério"
 WORKDIR /usr/src/app
 
 # Copy source code
-COPY package*.json ./
+COPY --chown=node:node package*.json ./
 
 # Running npm install
-RUN npm install --only=production
+RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
 
 # Copy the rest of your app's source code from your host to your image filesystem.
-COPY . .
+COPY --chown=node:node . .
 
-# Create a user group 'nodegroup', create a user 'nodeuser' under 'nodegroup' and chown all the files to the app user.
-RUN addgroup -S nodegroup && \
-    adduser -S -D -h /usr/src/app nodeuser nodegroup && \
-    chown -R nodeuser:nodegroup /usr/src
-
-# Switch to 'nodeuser'
-USER nodeuser
+# Switch to 'node' user
+USER node
 
 # Open the mapped port
 EXPOSE 3000
 
-CMD [ "node", "src/index.js" ]
+CMD ["node", "src/index.js"]
