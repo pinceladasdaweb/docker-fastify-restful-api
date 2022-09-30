@@ -37,12 +37,12 @@
     "@fastify/helmet": "^10.0.0",
     "@fastify/jwt": "^6.3.2",
     "@hapi/boom": "10.0.0",
-    "@sentry/node": "^7.13.0",
+    "@sentry/node": "^7.14.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^2.1.1",
     "ajv-keywords": "^5.1.0",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.0.3",
     "fastify": "^4.6.0",
     "fastify-plugin": "^4.2.1",
     "http-errors": "^2.0.0",
@@ -50,7 +50,7 @@
     "mongoose-delete": "^0.5.4",
     "mongoose-paginate-v2": "^1.7.1",
     "mongoose-slug-generator": "^1.0.4",
-    "pino": "^8.6.0",
+    "pino": "^8.6.1",
     "pino-pretty": "^9.1.0"
   },
   "husky": {
