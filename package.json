@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/pinceladasdaweb/docker-fastify-boilerplate#readme",
   "devDependencies": {
-    "husky": "^8.0.2",
+    "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "nodemon": "^2.0.20",
     "standard": "^17.0.0"
