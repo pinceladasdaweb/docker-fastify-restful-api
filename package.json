@@ -46,7 +46,7 @@
     "fastify": "^4.11.0",
     "fastify-plugin": "^4.4.0",
     "http-errors": "^2.0.0",
-    "mongoose": "^6.8.2",
+    "mongoose": "^6.8.3",
     "mongoose-delete": "^0.5.4",
     "mongoose-paginate-v2": "^1.7.1",
     "mongoose-slug-generator": "^1.0.4",
