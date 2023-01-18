@@ -37,7 +37,7 @@
     "@fastify/helmet": "^10.1.0",
     "@fastify/jwt": "^6.5.0",
     "@hapi/boom": "10.0.0",
-    "@sentry/node": "^7.31.0",
+    "@sentry/node": "^7.31.1",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^2.1.1",
     "ajv-keywords": "^5.1.0",
