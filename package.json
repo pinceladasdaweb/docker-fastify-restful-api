@@ -51,7 +51,7 @@
     "mongoose-paginate-v2": "^1.7.1",
     "mongoose-slug-generator": "^1.0.4",
     "pino": "^8.10.0",
-    "pino-pretty": "^9.1.1"
+    "pino-pretty": "^9.2.0"
   },
   "husky": {
     "hooks": {
