@@ -33,7 +33,7 @@
     "standard": "^17.0.0"
   },
   "dependencies": {
-    "@fastify/cors": "^8.2.0",
+    "@fastify/cors": "^8.2.1",
     "@fastify/helmet": "^10.1.0",
     "@fastify/jwt": "^6.7.0",
     "@hapi/boom": "10.0.1",
