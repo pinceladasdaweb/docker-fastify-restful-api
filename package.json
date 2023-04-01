@@ -28,30 +28,30 @@
   "homepage": "https://github.com/pinceladasdaweb/docker-fastify-boilerplate#readme",
   "devDependencies": {
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
-    "nodemon": "^2.0.21",
+    "lint-staged": "^13.2.0",
+    "nodemon": "^2.0.22",
     "standard": "^17.0.0"
   },
   "dependencies": {
-    "@fastify/cors": "^8.2.0",
+    "@fastify/cors": "^8.2.1",
     "@fastify/helmet": "^10.1.0",
-    "@fastify/jwt": "^6.7.0",
+    "@fastify/jwt": "^6.7.1",
     "@hapi/boom": "10.0.1",
-    "@sentry/node": "^7.41.0",
+    "@sentry/node": "^7.46.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^2.1.1",
     "ajv-keywords": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
-    "fastify": "^4.14.1",
+    "fastify": "^4.15.0",
     "fastify-plugin": "^4.5.0",
     "http-errors": "^2.0.0",
-    "mongoose": "^7.0.1",
+    "mongoose": "^7.0.3",
     "mongoose-delete": "^0.5.4",
     "mongoose-paginate-v2": "^1.7.1",
     "mongoose-slug-generator": "^1.0.4",
     "pino": "^8.11.0",
-    "pino-pretty": "^9.4.0"
+    "pino-pretty": "^10.0.0"
   },
   "husky": {
     "hooks": {
