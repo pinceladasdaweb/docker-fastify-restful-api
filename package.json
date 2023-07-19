@@ -44,7 +44,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.3.1",
     "fastify": "^4.20.0",
-    "fastify-plugin": "^4.5.0",
+    "fastify-plugin": "^4.5.1",
     "http-errors": "^2.0.0",
     "mongoose": "^7.4.0",
     "mongoose-delete": "^1.0.1",
