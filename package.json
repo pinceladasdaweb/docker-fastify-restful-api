@@ -50,7 +50,7 @@
     "mongoose-delete": "^1.0.1",
     "mongoose-paginate-v2": "^1.7.31",
     "mongoose-slug-generator": "^1.0.4",
-    "pino": "^8.15.3",
+    "pino": "^8.15.4",
     "pino-pretty": "^10.2.2"
   },
   "husky": {
