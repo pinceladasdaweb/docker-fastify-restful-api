@@ -35,7 +35,7 @@
   "dependencies": {
     "@fastify/cors": "^8.5.0",
     "@fastify/helmet": "^11.1.1",
-    "@fastify/jwt": "^7.2.4",
+    "@fastify/jwt": "^8.0.0",
     "@hapi/boom": "10.0.1",
     "@sentry/node": "^7.92.0",
     "ajv-errors": "^3.0.0",
