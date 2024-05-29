@@ -48,7 +48,7 @@
     "http-errors": "^2.0.0",
     "mongoose": "^8.4.0",
     "mongoose-delete": "^1.0.2",
-    "mongoose-paginate-v2": "^1.8.1",
+    "mongoose-paginate-v2": "^1.8.2",
     "mongoose-slug-generator": "^1.0.4",
     "pino": "^9.1.0",
     "pino-pretty": "^11.1.0"
