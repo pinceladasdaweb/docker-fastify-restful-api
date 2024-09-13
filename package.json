@@ -30,7 +30,7 @@
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "nodemon": "^3.1.4",
-    "standard": "^17.1.0"
+    "standard": "^17.1.1"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
