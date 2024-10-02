@@ -1,9 +1,7 @@
-version: '3.7'
-
 services:
   api:
     container_name: api
-    image: node:16.17.1-alpine
+    image: node:20.17.0-alpine
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
