@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "./node_modules/nodemon/bin/nodemon.js -r dotenv/config src/index.js",
-    "husky": "husky install",
+    "prepare": "git config core.hooksPath .hooks",
     "start": "node src/index.js",
     "standard:fix": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,36 +27,32 @@
   },
   "homepage": "https://github.com/pinceladasdaweb/docker-fastify-boilerplate#readme",
   "devDependencies": {
-    "husky": "^9.1.5",
-    "lint-staged": "^15.2.9",
-    "nodemon": "^3.1.4",
-    "standard": "^17.1.0"
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "lint-staged": "^15.2.10",
+    "nodemon": "^3.1.7",
+    "standard": "^17.1.2"
   },
   "dependencies": {
-    "@fastify/cors": "^9.0.1",
-    "@fastify/helmet": "^11.1.1",
-    "@fastify/jwt": "^8.0.1",
+    "@fastify/cors": "^10.0.1",
+    "@fastify/helmet": "^12.0.1",
+    "@fastify/jwt": "^9.0.1",
     "@hapi/boom": "10.0.1",
-    "@sentry/node": "^8.26.0",
+    "@sentry/node": "^8.32.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1",
     "ajv-keywords": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
-    "fastify": "^4.28.1",
-    "fastify-plugin": "^4.5.1",
+    "fastify": "^5.0.0",
+    "fastify-plugin": "^5.0.1",
     "http-errors": "^2.0.0",
-    "mongoose": "^8.5.3",
+    "mongoose": "^8.7.0",
     "mongoose-delete": "^1.0.2",
-    "mongoose-paginate-v2": "^1.8.3",
+    "mongoose-paginate-v2": "^1.8.5",
     "mongoose-slug-generator": "^1.0.4",
-    "pino": "^9.3.2",
+    "pino": "^9.4.0",
     "pino-pretty": "^11.2.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "src/**/*.js": "standard"

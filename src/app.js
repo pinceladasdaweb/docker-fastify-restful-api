@@ -1,10 +1,10 @@
 const Fastify = require('fastify')
-const { Logger } = require('./utils')
+const config = require('./utils/config/logger-config')
 const { NOT_FOUND, INTERNAL_SERVER_ERROR } = require('./errors')
 
 const build = async () => {
   const fastify = Fastify({
-    logger: Logger,
+    logger: config,
     trustProxy: true,
     bodyLimit: 1048576 * 10
   })
