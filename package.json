@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "./node_modules/nodemon/bin/nodemon.js -r dotenv/config src/index.js",
-    "husky": "husky install",
+    "prepare": "git config core.hooksPath .hooks",
     "start": "node src/index.js",
     "standard:fix": "standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,7 +27,8 @@
   },
   "homepage": "https://github.com/pinceladasdaweb/docker-fastify-boilerplate#readme",
   "devDependencies": {
-    "husky": "^9.1.6",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
     "lint-staged": "^15.2.10",
     "nodemon": "^3.1.7",
     "standard": "^17.1.2"
@@ -52,11 +53,6 @@
     "mongoose-slug-generator": "^1.0.4",
     "pino": "^9.4.0",
     "pino-pretty": "^11.2.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "src/**/*.js": "standard"
