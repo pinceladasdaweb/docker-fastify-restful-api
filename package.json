@@ -30,7 +30,7 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "lint-staged": "^16.2.6",
-    "nodemon": "^3.1.10",
+    "nodemon": "^3.1.11",
     "standard": "^17.1.2"
   },
   "dependencies": {
