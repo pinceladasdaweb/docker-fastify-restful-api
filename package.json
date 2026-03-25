@@ -49,7 +49,7 @@
     "http-errors": "^2.0.1",
     "mongoose": "^9.3.2",
     "mongoose-delete": "^1.0.7",
-    "mongoose-paginate-v2": "^1.9.3",
+    "mongoose-paginate-v2": "^1.9.4",
     "mongoose-slug-generator": "^1.0.4",
     "pino": "^10.3.1",
     "pino-pretty": "^13.1.3"
