@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/pinceladasdaweb/docker-fastify-boilerplate#readme",
   "devDependencies": {
-    "@commitlint/cli": "^21.0.1",
+    "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^21.0.1",
     "lint-staged": "^17.0.8",
     "nodemon": "^3.1.14",
