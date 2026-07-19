@@ -66,7 +66,7 @@ class RestfulRepository {
   * @param {Object} options
   */
   findByIdAndUpdate (id, data, options = {}) {
-    return this.model.findOneAndUpdate({ _id: id }, data, { new: true, ...options })
+    return this.model.findOneAndUpdate({ _id: id }, data, { returnDocument: 'after', ...options })
   }
 
   /**

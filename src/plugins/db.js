@@ -13,8 +13,10 @@ const buildUrl = () => {
   const password = fromEnv('MONGODB_PASSWORD')
   // local/test instances may not require authentication
   const credentials = username ? `${encodeURIComponent(username)}:${encodeURIComponent(password ?? '')}@` : ''
+  // the official mongo image (and Atlas) keeps users in the admin database
+  const authSource = credentials ? `&authSource=${fromEnv('MONGODB_AUTH_SOURCE', 'admin')}` : ''
 
-  return `${protocol}://${credentials}${fromEnv('MONGODB_HOST')}/${fromEnv('MONGODB_DATABASE')}?retryWrites=true&w=majority`
+  return `${protocol}://${credentials}${fromEnv('MONGODB_HOST')}/${fromEnv('MONGODB_DATABASE')}?retryWrites=true&w=majority${authSource}`
 }
 
 async function connectWithRetry (fastify) {

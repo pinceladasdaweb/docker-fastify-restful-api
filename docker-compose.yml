@@ -13,7 +13,8 @@ services:
     depends_on:
       - mongo
     healthcheck:
-      test: ['CMD-SHELL', 'wget -qO- http://localhost:3000/health || exit 1']
+      # explicit 127.0.0.1: busybox wget resolves localhost to ::1 (IPv6)
+      test: ['CMD-SHELL', 'wget -qO- http://127.0.0.1:3000/health || exit 1']
       interval: 30s
       timeout: 5s
       retries: 3
@@ -22,28 +23,24 @@ services:
       - 'traefik.enable=true'
       - 'traefik.http.routers.api.rule=Host(`fastify.localhost`) && PathPrefix(`/api/v1`)'
       - 'traefik.http.routers.api.entrypoints=http'
+      - 'traefik.http.services.api.loadbalancer.server.port=3000'
 
   mongo:
     container_name: mongo
-    image: 'bitnami/mongodb:8.0'
+    image: 'mongo:8'
     restart: always
     ports:
       - '27017:27017'
     volumes:
-      - 'mongodb_data:/bitnami/mongodb'
+      - 'mongodb_data:/data/db'
     environment:
-      MONGODB_USERNAME: ${MONGODB_USERNAME}
-      MONGODB_PASSWORD: ${MONGODB_PASSWORD}
-      MONGODB_DATABASE: ${MONGODB_DATABASE}
-      MONGODB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.http.routers.mongo.entrypoints=http'
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
 
   traefik:
     container_name: traefik
-    image: traefik:v2.5.3
-    command: --api.insecure=true --providers.docker --log.level=debug --accesslog=true
+    image: traefik:v3
+    command: --api.insecure=true --providers.docker --providers.docker.exposedbydefault=false --entrypoints.http.address=:80 --log.level=INFO --accesslog=true
     ports:
       - '80:80'
       - '8080:8080'
