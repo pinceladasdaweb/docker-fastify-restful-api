@@ -1,24 +1,23 @@
 services:
   api:
     container_name: api
-    image: node:20.17.0-alpine
+    image: node:22-alpine
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
-    command: >
-      /bin/sh -c "
-        echo Waiting for mongodb service start...;
-        while ! nc -z mongo 27017;
-        do
-          sleep 1;
-        done;
-        npm run dev
-      "
+    # a espera pelo mongo acontece no próprio app (retry no plugin de banco)
+    command: npm run dev
     init: true
     volumes:
       - .:/usr/src/app
     depends_on:
       - mongo
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -qO- http://localhost:3000/health || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.api.rule=Host(`fastify.localhost`) && PathPrefix(`/api/v1`)'
@@ -26,7 +25,7 @@ services:
 
   mongo:
     container_name: mongo
-    image: 'bitnami/mongodb:4.4'
+    image: 'bitnami/mongodb:8.0'
     restart: always
     ports:
       - '27017:27017'

@@ -9,10 +9,12 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const buildUrl = () => {
   const protocol = fromEnv.bool('MONGODB_SRV', false) ? 'mongodb+srv' : 'mongodb'
-  const username = encodeURIComponent(fromEnv('MONGODB_USERNAME'))
-  const password = encodeURIComponent(fromEnv('MONGODB_PASSWORD'))
+  const username = fromEnv('MONGODB_USERNAME')
+  const password = fromEnv('MONGODB_PASSWORD')
+  // instâncias locais/de teste podem não exigir autenticação
+  const credentials = username ? `${encodeURIComponent(username)}:${encodeURIComponent(password ?? '')}@` : ''
 
-  return `${protocol}://${username}:${password}@${fromEnv('MONGODB_HOST')}/${fromEnv('MONGODB_DATABASE')}?retryWrites=true&w=majority`
+  return `${protocol}://${credentials}${fromEnv('MONGODB_HOST')}/${fromEnv('MONGODB_DATABASE')}?retryWrites=true&w=majority`
 }
 
 async function connectWithRetry (fastify) {

@@ -103,10 +103,8 @@ const responseSchema = {
   _id: { type: 'string' },
   slug: { type: 'string' },
   ...commom,
-  deleted: { type: 'boolean' },
   updatedAt: { type: 'string' },
-  createdAt: { type: 'string' },
-  __v: { type: 'number' }
+  createdAt: { type: 'string' }
 }
 
 const listSchema = {

@@ -14,7 +14,7 @@ const start = async () => {
   process.on('SIGTERM', exitHandler(0, 'SIGTERM'))
   process.on('SIGINT', exitHandler(0, 'SIGINT'))
 
-  await app.listen({ port: fromEnv('APP_PORT'), host: '0.0.0.0' })
+  await app.listen({ port: fromEnv.int('APP_PORT', 3000), host: '0.0.0.0' })
 }
 
 start().catch(err => {

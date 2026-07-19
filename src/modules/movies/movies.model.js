@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const slug = require('mongoose-slug-generator')
 const mongooseDelete = require('mongoose-delete')
+const { slugify } = require('../../shared/utils')
 const mongoosePaginate = require('mongoose-paginate-v2')
 const { genresEnum, languagesEnum, countryCodesEnum } = require('../../shared/enums')
 
@@ -16,8 +16,7 @@ const Schema = new mongoose.Schema({
   },
   slug: {
     type: String,
-    index: true,
-    slug: ['title', 'year']
+    index: true
   },
   year: {
     type: Number,
@@ -74,11 +73,15 @@ const Schema = new mongoose.Schema({
     required: true
   }
 }, {
-  timestamps: true,
-  usePushEach: true
+  timestamps: true
 })
 
-Schema.plugin(slug)
+Schema.pre('save', function () {
+  if (this.isModified('title') || this.isModified('year') || !this.slug) {
+    this.slug = slugify(`${this.title} ${this.year}`)
+  }
+})
+
 Schema.plugin(mongoosePaginate)
 Schema.plugin(mongooseDelete, {
   deletedAt: true,

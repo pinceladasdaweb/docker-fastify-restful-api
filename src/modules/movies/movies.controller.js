@@ -8,7 +8,7 @@ const list = async (request, reply) => {
   const { limit, page, sort } = request.query
   const docs = await repository.query({}, { limit, page, sort })
 
-  return Array.isArray(docs.docs) && docs.docs.length > 0 ? reply.send(docs) : reply.code(204).send()
+  reply.send(docs)
 }
 
 const view = async (request, reply) => {

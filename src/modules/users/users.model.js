@@ -26,8 +26,7 @@ const Schema = new mongoose.Schema({
     required: true
   }
 }, {
-  timestamps: true,
-  usePushEach: true
+  timestamps: true
 })
 
 Schema.pre('save', async function () {

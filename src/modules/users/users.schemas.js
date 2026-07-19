@@ -6,7 +6,10 @@ const bodyCreateSchema = {
       type: 'string',
       format: 'email'
     },
-    password: { type: 'string' }
+    password: {
+      type: 'string',
+      minLength: 8
+    }
   },
   required: ['name', 'email', 'password'],
   errorMessage: {
@@ -16,7 +19,8 @@ const bodyCreateSchema = {
       password: 'password is required.'
     },
     properties: {
-      email: 'should be match a email.'
+      email: 'should be match a email.',
+      password: 'password must be at least 8 characters long.'
     }
   }
 }
@@ -44,12 +48,10 @@ const bodyAuthSchema = {
 
 const responseCreateSchema = {
   _id: { type: 'string' },
-  deleted: { type: 'boolean' },
   name: { type: 'string' },
   email: { type: 'string' },
   updatedAt: { type: 'string' },
-  createdAt: { type: 'string' },
-  __v: { type: 'number' }
+  createdAt: { type: 'string' }
 }
 
 const responseAuthSchema = {
