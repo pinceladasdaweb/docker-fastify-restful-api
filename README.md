@@ -48,12 +48,10 @@ npm install
 
 ## Configuration
 
-1. Rename the .env.example file to .env and fill variables. The Postgres variables are required for Sonarqube. The SENTRY_DSN variable is not obligatory.
+1. Rename the .env.example file to .env and fill variables. The SENTRY_DSN variable is not obligatory.
 
 2. Edit your hosts file with:
   >127.0.0.1 fastify.localhost
-  >
-  >127.0.0.1 sonarqube.localhost
 
 ## Run
 
@@ -109,18 +107,6 @@ curl -i --request GET 'http://fastify.localhost/api/v1'
 
 I exported Insomnia [`collection/data`](insomnia_2021-02-07.json) for so you can test all the endpoints.
 
-## Sonarqube dashboard
-
-To access Sonarqube dashboard, simple access in your browser:
-
-```sh
-http://sonarqube.localhost
-```
-
-![](/sonarqube.png)
-
-[Follow the guide](SONARQUBE.md) to learn more about the settings and how to run Sonar code analysis.
-
 ## Traefik dashboard
 
 To access Traefik dashboard, simple access in your browser:
@@ -128,11 +114,5 @@ To access Traefik dashboard, simple access in your browser:
 ```sh
 http://localhost:8080
 ```
-
-![](/traefik.png)
-
-## Infrastructure model
-
-![Infrastructure model](.infragenie/infrastructure_model.png)
 
 Happy coding!
