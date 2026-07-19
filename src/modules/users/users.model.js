@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose')
-const { fromEnv } = require('../utils')
+const { fromEnv } = require('../../shared/utils')
 const mongooseDelete = require('mongoose-delete')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
@@ -16,13 +16,13 @@ const Schema = new mongoose.Schema({
   email: {
     type: String,
     trim: true,
-    index: true,
+    unique: true,
+    lowercase: true,
     required: true
   },
   password: {
     type: String,
     trim: true,
-    index: true,
     required: true
   }
 }, {
@@ -30,10 +30,12 @@ const Schema = new mongoose.Schema({
   usePushEach: true
 })
 
-Schema.pre('save', function (next) {
-  this.password = bcrypt.hashSync(this.password, parseInt(fromEnv('SALT'), 10))
+Schema.pre('save', async function () {
+  if (!this.isModified('password')) {
+    return
+  }
 
-  next()
+  this.password = await bcrypt.hash(this.password, fromEnv.int('SALT', 10))
 })
 
 Schema.plugin(mongoosePaginate)

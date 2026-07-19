@@ -1,17 +1,27 @@
 const mongoose = require('mongoose')
-const { fromEnv } = require('../utils')
+const { fromEnv } = require('../shared/utils')
 const fastifyPlugin = require('fastify-plugin')
 
 const MAX_RETRIES = 30
 const RETRY_INTERVAL = 5000
 
-async function connectWithRetry (fastify, retryCount = 0) {
-  const url = `mongodb${JSON.parse(fromEnv.bool('MONGODB_SRV')) ? '+srv' : ''}://${fromEnv('MONGODB_USERNAME')}:${fromEnv('MONGODB_PASSWORD')}@${fromEnv('MONGODB_HOST')}/${fromEnv('MONGODB_DATABASE')}?retryWrites=true&w=majority`
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+const buildUrl = () => {
+  const protocol = fromEnv.bool('MONGODB_SRV', false) ? 'mongodb+srv' : 'mongodb'
+  const username = encodeURIComponent(fromEnv('MONGODB_USERNAME'))
+  const password = encodeURIComponent(fromEnv('MONGODB_PASSWORD'))
+
+  return `${protocol}://${username}:${password}@${fromEnv('MONGODB_HOST')}/${fromEnv('MONGODB_DATABASE')}?retryWrites=true&w=majority`
+}
+
+async function connectWithRetry (fastify) {
+  const url = buildUrl()
 
   mongoose.set('strictQuery', true)
   mongoose.set('debug', fromEnv('NODE_ENV') === 'development')
 
-  if (mongoose.connection.readyState !== 1) {
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       await mongoose.connect(url, {
         autoIndex: true,
@@ -20,28 +30,32 @@ async function connectWithRetry (fastify, retryCount = 0) {
       })
 
       fastify.log.info('MongoDB is connected')
+
+      return
     } catch (err) {
       fastify.log.error(`Failed to connect to MongoDB: ${err.message}`)
 
-      if (retryCount < MAX_RETRIES) {
-        fastify.log.info(`Retrying in ${RETRY_INTERVAL / 1000} seconds... (Attempt ${retryCount + 1}/${MAX_RETRIES})`)
-
-        setTimeout(() => connectWithRetry(fastify, retryCount + 1), RETRY_INTERVAL)
-      } else {
-        fastify.log.error('Max retries reached. Unable to connect to MongoDB')
-
-        process.exit(1)
+      if (attempt === MAX_RETRIES) {
+        throw new Error('Max retries reached. Unable to connect to MongoDB')
       }
+
+      fastify.log.info(`Retrying in ${RETRY_INTERVAL / 1000} seconds... (Attempt ${attempt}/${MAX_RETRIES})`)
+
+      await delay(RETRY_INTERVAL)
     }
   }
 }
 
 async function dbConnector (fastify, _options) {
-  await connectWithRetry(fastify)
+  if (mongoose.connection.readyState !== 1) {
+    await connectWithRetry(fastify)
+  }
 
   if (!fastify.mongo) {
     fastify.decorate('mongo', mongoose)
   }
+
+  fastify.addHook('onClose', () => mongoose.connection.close())
 }
 
 module.exports = fastifyPlugin(dbConnector, { name: 'dbConnector' })

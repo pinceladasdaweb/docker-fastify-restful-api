@@ -2,7 +2,9 @@ const Ajv = require('ajv/dist/2019')
 
 const ajv = new Ajv({
   allErrors: true,
-  $data: true
+  $data: true,
+  coerceTypes: 'array',
+  useDefaults: true
 })
 
 require('ajv-errors')(ajv)

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const slug = require('mongoose-slug-generator')
 const mongooseDelete = require('mongoose-delete')
 const mongoosePaginate = require('mongoose-paginate-v2')
-const { genresEnum, languagesEnum, countryCodesEnum } = require('../enums')
+const { genresEnum, languagesEnum, countryCodesEnum } = require('../../shared/enums')
 
 /**
 * Namespace: Movies

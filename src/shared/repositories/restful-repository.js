@@ -37,7 +37,7 @@ class RestfulRepository {
   * @param {String} value
   */
   findOneBy (prop, value) {
-    if (!prop || !value) {
+    if (!prop || value === undefined || value === null) {
       throw new Error('Property and value must be specified.')
     }
 
@@ -65,10 +65,8 @@ class RestfulRepository {
   * @param {Object} data
   * @param {Object} options
   */
-  async findByIdAndUpdate (id, data, options = {}) {
-    const obj = await this.model.findOneAndUpdate({ _id: id }, data, options)
-
-    return obj.save()
+  findByIdAndUpdate (id, data, options = {}) {
+    return this.model.findOneAndUpdate({ _id: id }, data, { new: true, ...options })
   }
 
   /**

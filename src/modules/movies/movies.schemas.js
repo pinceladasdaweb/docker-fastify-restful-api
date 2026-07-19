@@ -2,7 +2,7 @@ const {
   genresEnum,
   languagesEnum,
   countryCodesEnum
-} = require('../../../enums')
+} = require('../../shared/enums')
 
 const commom = {
   title: { type: 'string' },
@@ -34,6 +34,44 @@ const commom = {
     enum: countryCodesEnum
   },
   imdbID: { type: 'string' }
+}
+
+const paramsIdSchema = {
+  type: 'object',
+  properties: {
+    id: {
+      type: 'string',
+      pattern: '^[0-9a-fA-F]{24}$'
+    }
+  },
+  required: ['id'],
+  errorMessage: {
+    required: {
+      id: 'id is required.'
+    },
+    properties: {
+      id: 'id must match an ObjectId.'
+    }
+  }
+}
+
+const querystringListSchema = {
+  type: 'object',
+  properties: {
+    page: {
+      type: 'integer',
+      minimum: 1,
+      default: 1
+    },
+    limit: {
+      type: 'integer',
+      minimum: 1,
+      maximum: 100,
+      default: 100
+    },
+    sort: { type: 'string' }
+  },
+  additionalProperties: false
 }
 
 const bodyCreateSchema = {
@@ -72,6 +110,7 @@ const responseSchema = {
 }
 
 const listSchema = {
+  querystring: querystringListSchema,
   response: {
     200: {
       type: 'object',
@@ -93,6 +132,7 @@ const listSchema = {
 }
 
 const viewSchema = {
+  params: paramsIdSchema,
   response: {
     200: {
       type: 'object',
@@ -112,26 +152,7 @@ const createSchema = {
 }
 
 const updateSchema = {
-  params: {
-    type: 'object',
-    properties: {
-      id: {
-        type: 'string',
-        regexp: '/^(0x|0h)?[0-9A-F]+$/i',
-        minLength: 24,
-        maxLength: 24
-      }
-    },
-    required: ['id'],
-    errorMessage: {
-      required: {
-        id: 'id is required.'
-      },
-      properties: {
-        id: 'id be match a ObjectId.'
-      }
-    }
-  },
+  params: paramsIdSchema,
   body: {
     type: 'object',
     properties: {
@@ -147,9 +168,14 @@ const updateSchema = {
   }
 }
 
+const deleteSchema = {
+  params: paramsIdSchema
+}
+
 module.exports = {
   listSchema,
   viewSchema,
   createSchema,
-  updateSchema
+  updateSchema,
+  deleteSchema
 }
