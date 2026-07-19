@@ -21,7 +21,7 @@ const build = async () => {
     logger: config,
     trustProxy: true,
     bodyLimit: 1048576 * 10,
-    // o plugin de banco aguarda até 30 tentativas de conexão (~5 min) no boot
+    // the db plugin waits for up to 30 connection attempts (~5 min) during boot
     pluginTimeout: 300000
   })
 
@@ -36,7 +36,7 @@ const build = async () => {
         workerSrc: ['\'self\'', 'blob:'],
         frameSrc: ['\'self\''],
         formAction: ['\'self\''],
-        // o Swagger UI usa estilos inline e ícones em data: URI
+        // Swagger UI relies on inline styles and data: URI icons
         styleSrc: ['\'self\'', '\'unsafe-inline\''],
         imgSrc: ['\'self\'', 'data:'],
         upgradeInsecureRequests: []
@@ -92,7 +92,7 @@ const build = async () => {
   fastify.setErrorHandler((err, request, reply) => {
     fastify.log.error(err)
 
-    // violação de índice único do MongoDB (ex.: email duplicado numa race)
+    // MongoDB unique index violation (e.g. duplicated email in a race)
     if (err.code === 11000) {
       return reply.status(409).send({
         statusCode: 409,
@@ -101,11 +101,11 @@ const build = async () => {
       })
     }
 
-    // erros de validação/cast do Mongoose indicam request inválida
+    // mongoose validation/cast errors indicate an invalid request
     const isClientDataError = ['ValidationError', 'CastError'].includes(err.name)
     const statusCode = isClientDataError ? 400 : err.statusCode ?? 500
 
-    // detalhes internos de 5xx só aparecem em desenvolvimento
+    // internal 5xx details are only exposed in development
     const exposeMessage = statusCode < 500 || fromEnv('NODE_ENV') === 'development'
 
     reply.status(statusCode).send({

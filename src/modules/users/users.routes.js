@@ -2,7 +2,7 @@ const controller = require('./users.controller')
 const { createSchema, authSchema } = require('./users.schemas')
 const validatorCompiler = require('../../shared/validators/ajv')
 
-// login e registro têm limite mais rígido para dificultar brute-force
+// login and register get a stricter limit to slow down brute-force attempts
 const strictRateLimit = {
   rateLimit: {
     max: 5,

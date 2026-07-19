@@ -1,7 +1,7 @@
 const { MongoMemoryServer } = require('mongodb-memory-server')
 
-// sobe um MongoDB em memória e constrói o app apontando para ele;
-// as envs precisam ser definidas ANTES do require do app
+// spins up an in-memory MongoDB and builds the app pointing at it;
+// env vars must be set BEFORE the app is required
 const setupTestApp = async () => {
   const mongod = await MongoMemoryServer.create()
   const uri = new URL(mongod.getUri())

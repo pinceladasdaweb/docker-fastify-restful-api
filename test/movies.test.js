@@ -32,36 +32,36 @@ const movie = {
   imdbID: 'tt0317248'
 }
 
-test('sem token, todas as rotas de movies respondem 401', async () => {
+test('without a token, every movies route responds 401', async () => {
   const res = await ctx.app.inject({ method: 'GET', url: '/api/v1/movies' })
 
   assert.strictEqual(res.statusCode, 401)
 })
 
-test('lista vazia responde 200 com docs: []', async () => {
+test('empty list responds 200 with docs: []', async () => {
   const res = await inject('GET', '/api/v1/movies')
 
   assert.strictEqual(res.statusCode, 200)
   assert.deepStrictEqual(res.json().docs, [])
 })
 
-test('payload sem campos obrigatórios responde 400', async () => {
+test('payload missing required fields responds 400', async () => {
   const res = await inject('POST', '/api/v1/movies', { title: 'Incompleto' })
 
   assert.strictEqual(res.statusCode, 400)
 })
 
-test('cria um filme e gera o slug a partir de título e ano', async () => {
+test('creates a movie and generates the slug from title and year', async () => {
   const res = await inject('POST', '/api/v1/movies', movie)
 
   assert.strictEqual(res.statusCode, 201)
 
   const body = res.json()
-  assert.strictEqual(body.slug, 'cidade-de-deus-2002', 'slug deve normalizar acentos')
-  assert.strictEqual(body.__v, undefined, 'internals do mongoose não devem vazar')
+  assert.strictEqual(body.slug, 'cidade-de-deus-2002', 'slug must normalize accented characters')
+  assert.strictEqual(body.__v, undefined, 'mongoose internals must not leak')
 })
 
-test('listagem devolve o filme criado com paginação', async () => {
+test('listing returns the created movie with pagination', async () => {
   const res = await inject('GET', '/api/v1/movies')
 
   assert.strictEqual(res.statusCode, 200)
@@ -72,13 +72,13 @@ test('listagem devolve o filme criado com paginação', async () => {
   assert.strictEqual(body.page, 1)
 })
 
-test('limit acima de 100 responde 400', async () => {
+test('limit above 100 responds 400', async () => {
   const res = await inject('GET', '/api/v1/movies?limit=200')
 
   assert.strictEqual(res.statusCode, 400)
 })
 
-test('busca por id funciona e id inexistente responde 404', async () => {
+test('find by id works and an unknown id responds 404', async () => {
   const created = (await inject('POST', '/api/v1/movies', { ...movie, title: 'O Auto da Compadecida', year: 2000 })).json()
 
   const found = await inject('GET', `/api/v1/movies/${created._id}`)
@@ -89,14 +89,14 @@ test('busca por id funciona e id inexistente responde 404', async () => {
   assert.strictEqual(missing.statusCode, 404)
 })
 
-test('id fora do formato ObjectId é barrado pelo schema com 400', async () => {
+test('id outside the ObjectId format is rejected by the schema with 400', async () => {
   const res = await inject('GET', '/api/v1/movies/not-an-id')
 
   assert.strictEqual(res.statusCode, 400)
   assert.match(res.json().message, /ObjectId/)
 })
 
-test('PATCH atualiza o filme em uma única escrita', async () => {
+test('PATCH updates the movie in a single write', async () => {
   const created = (await inject('POST', '/api/v1/movies', { ...movie, title: 'Tropa de Elite', year: 2007 })).json()
 
   const res = await inject('PATCH', `/api/v1/movies/${created._id}`, { year: 2008 })
@@ -105,7 +105,7 @@ test('PATCH atualiza o filme em uma única escrita', async () => {
   assert.strictEqual(res.json().year, 2008)
 })
 
-test('DELETE responde 204 e o filme some das buscas (soft delete)', async () => {
+test('DELETE responds 204 and the movie disappears from queries (soft delete)', async () => {
   const created = (await inject('POST', '/api/v1/movies', { ...movie, title: 'Central do Brasil', year: 1998 })).json()
 
   const del = await inject('DELETE', `/api/v1/movies/${created._id}`)

@@ -21,38 +21,38 @@ const user = {
   password: 'correct-horse'
 }
 
-test('registra um usuário e não expõe a senha na resposta', async () => {
+test('registers a user without exposing the password in the response', async () => {
   const res = await register(user)
 
   assert.strictEqual(res.statusCode, 201)
 
   const body = res.json()
-  assert.strictEqual(body.email, 'ada@example.com', 'email deve ser normalizado para minúsculas')
-  assert.strictEqual(body.password, undefined, 'senha não pode vazar na resposta')
-  assert.strictEqual(body.__v, undefined, 'internals do mongoose não devem vazar')
+  assert.strictEqual(body.email, 'ada@example.com', 'email must be normalized to lowercase')
+  assert.strictEqual(body.password, undefined, 'password must not leak in the response')
+  assert.strictEqual(body.__v, undefined, 'mongoose internals must not leak')
 })
 
-test('email duplicado responde 409, mesmo variando maiúsculas', async () => {
+test('duplicated email responds 409, even with different casing', async () => {
   const res = await register({ ...user, email: 'ADA@example.com' })
 
   assert.strictEqual(res.statusCode, 409)
 })
 
-test('email inválido responde 400 com a mensagem customizada', async () => {
+test('invalid email responds 400 with the custom message', async () => {
   const res = await register({ ...user, email: 'not-an-email' })
 
   assert.strictEqual(res.statusCode, 400)
   assert.match(res.json().message, /email/)
 })
 
-test('senha curta responde 400', async () => {
+test('short password responds 400', async () => {
   const res = await register({ name: 'x', email: 'short@example.com', password: '123' })
 
   assert.strictEqual(res.statusCode, 400)
   assert.match(res.json().message, /8 characters/)
 })
 
-test('login com credenciais válidas devolve um token JWT', async () => {
+test('login with valid credentials returns a JWT token', async () => {
   const res = await auth({ email: 'ada@example.com', password: user.password })
 
   assert.strictEqual(res.statusCode, 200)
@@ -62,21 +62,21 @@ test('login com credenciais válidas devolve um token JWT', async () => {
   assert.strictEqual(decoded.name, user.name)
 })
 
-test('senha errada responde 401', async () => {
+test('wrong password responds 401', async () => {
   const res = await auth({ email: 'ada@example.com', password: 'wrong-password' })
 
   assert.strictEqual(res.statusCode, 401)
 })
 
-test('email desconhecido responde 401 com a mesma mensagem', async () => {
+test('unknown email responds 401 with the same message', async () => {
   const res = await auth({ email: 'ghost@example.com', password: 'whatever-here' })
 
   assert.strictEqual(res.statusCode, 401)
   assert.match(res.json().message, /Invalid email or password/)
 })
 
-test('rate limit do login responde 429 após 5 tentativas no mesmo minuto', async () => {
-  // as 3 chamadas acima + estas 2 esgotam o limite de 5
+test('login rate limit responds 429 after 5 attempts within a minute', async () => {
+  // the 3 calls above plus these 2 exhaust the limit of 5
   await auth({ email: 'ada@example.com', password: 'wrong-password' })
   await auth({ email: 'ada@example.com', password: 'wrong-password' })
 

@@ -12,28 +12,28 @@ after(async () => {
   await ctx.stop()
 })
 
-test('GET /api/v1/ responde com a mensagem da API', async () => {
+test('GET /api/v1/ responds with the API welcome message', async () => {
   const res = await ctx.app.inject({ method: 'GET', url: '/api/v1/' })
 
   assert.strictEqual(res.statusCode, 200)
   assert.strictEqual(res.json().message, 'Fastify API is on fire')
 })
 
-test('GET /health reporta banco conectado', async () => {
+test('GET /health reports the database as connected', async () => {
   const res = await ctx.app.inject({ method: 'GET', url: '/health' })
 
   assert.strictEqual(res.statusCode, 200)
   assert.deepStrictEqual(res.json(), { status: 'ok', database: 'up' })
 })
 
-test('GET /docs/json expõe o documento OpenAPI', async () => {
+test('GET /docs/json exposes the OpenAPI document', async () => {
   const res = await ctx.app.inject({ method: 'GET', url: '/docs/json' })
 
   assert.strictEqual(res.statusCode, 200)
-  assert.ok(res.json().openapi, 'documento deve ter a versão do openapi')
+  assert.ok(res.json().openapi, 'document must declare an openapi version')
 })
 
-test('rota inexistente cai no not found handler', async () => {
+test('unknown route falls through to the not found handler', async () => {
   const res = await ctx.app.inject({ method: 'GET', url: '/nope' })
 
   assert.strictEqual(res.statusCode, 404)

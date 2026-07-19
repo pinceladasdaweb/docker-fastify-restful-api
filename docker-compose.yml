@@ -5,7 +5,7 @@ services:
     working_dir: /usr/src/app
     ports:
       - '3000:3000'
-    # a espera pelo mongo acontece no próprio app (retry no plugin de banco)
+    # waiting for mongo happens inside the app itself (retry in the db plugin)
     command: npm run dev
     init: true
     volumes:
