@@ -1,4 +1,4 @@
-const { fromEnv } = require('../utils')
+const { fromEnv } = require('../shared/utils')
 const fastifyPlugin = require('fastify-plugin')
 
 module.exports = fastifyPlugin(async function (fastify, opts) {
@@ -6,7 +6,7 @@ module.exports = fastifyPlugin(async function (fastify, opts) {
     secret: fromEnv('JWT_SECRET'),
     messages: {
       badRequestErrorMessage: 'Format is Authorization: Bearer [token]',
-      noAuthorizationInHeaderMessage: 'Autorization header is missing!',
+      noAuthorizationInHeaderMessage: 'Authorization header is missing!',
       authorizationTokenExpiredMessage: 'Authorization token expired',
       authorizationTokenInvalid: (err) => {
         return `Authorization token is invalid: ${err.message}`

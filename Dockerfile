@@ -1,4 +1,4 @@
-FROM node:20.17.0-alpine
+FROM node:22-alpine
 
 LABEL maintainer="Pedro Rogério"
 
@@ -19,5 +19,8 @@ USER node
 
 # Open the mapped port
 EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s \
+  CMD wget -qO- http://127.0.0.1:3000/health || exit 1
 
 CMD ["node", "src/index.js"]

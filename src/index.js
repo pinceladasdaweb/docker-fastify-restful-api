@@ -1,23 +1,23 @@
 const { build } = require('./app')
-const { fromEnv, terminate } = require('./utils')
+const { fromEnv, terminate } = require('./shared/utils')
 
-build()
-  .then(app => {
-    app.listen({ port: fromEnv('APP_PORT'), host: '0.0.0.0' })
-      .then(_ => {
-        const exitHandler = terminate(app, {
-          coredump: false,
-          timeout: 500
-        })
+const start = async () => {
+  const app = await build()
 
-        process.on('uncaughtException', exitHandler(1, 'Unexpected Error'))
-        process.on('unhandledRejection', exitHandler(1, 'Unhandled Promise'))
-        process.on('SIGTERM', exitHandler(0, 'SIGTERM'))
-        process.on('SIGINT', exitHandler(0, 'SIGINT'))
-      })
-      .catch(err => {
-        console.log('Error starting server: ', err)
-        process.exit(1)
-      })
+  const exitHandler = terminate(app, {
+    coredump: false,
+    timeout: 10000
   })
-  .catch(err => console.log(err))
+
+  process.on('uncaughtException', exitHandler(1, 'Unexpected Error'))
+  process.on('unhandledRejection', exitHandler(1, 'Unhandled Promise'))
+  process.on('SIGTERM', exitHandler(0, 'SIGTERM'))
+  process.on('SIGINT', exitHandler(0, 'SIGINT'))
+
+  await app.listen({ port: fromEnv.int('APP_PORT', 3000), host: '0.0.0.0' })
+}
+
+start().catch(err => {
+  console.error('Error starting server: ', err)
+  process.exit(1)
+})
