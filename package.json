@@ -32,7 +32,7 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.1.0",
-    "lint-staged": "^17.0.8",
+    "lint-staged": "^17.1.0",
     "mongodb-memory-server": "^11.2.0",
     "nodemon": "^3.1.14",
     "standard": "^17.1.2"
