@@ -37,18 +37,18 @@ const Schema = new mongoose.Schema({
     index: true,
     required: true
   },
-  writers: {
+  writers: [{
     type: String,
     trim: true,
     index: true,
     required: true
-  },
-  actors: {
+  }],
+  actors: [{
     type: String,
     trim: true,
     index: true,
     required: true
-  },
+  }],
   description: {
     type: String,
     trim: true,
