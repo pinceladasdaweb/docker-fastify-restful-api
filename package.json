@@ -44,7 +44,7 @@
     "@fastify/rate-limit": "^11.1.0",
     "@fastify/swagger": "^9.8.1",
     "@fastify/swagger-ui": "^6.1.0",
-    "@sentry/node": "^10.66.0",
+    "@sentry/node": "^10.67.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1",
     "ajv-keywords": "^5.1.0",
