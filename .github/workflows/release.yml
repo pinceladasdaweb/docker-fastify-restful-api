@@ -1,0 +1,109 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+# Serialize releases: concurrent pushes to main must not race each other
+# through version bump / changelog / tag push.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Bump version, update changelog and tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Configure git
+        run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint and unit tests
+        run: |
+          npx standard src test
+          npm test
+
+      - name: Bump version based on the commits since the last tag
+        run: |
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+
+          if [[ -z "$PREVIOUS_TAG" ]]; then
+            # first release: adopt the version already in package.json as the baseline
+            NEW_VERSION=$(node -p "require('./package.json').version")
+            echo "No tags found. Using package.json version as baseline: $NEW_VERSION"
+          else
+            COMMITS=$(git log "$PREVIOUS_TAG"..HEAD --pretty=%B)
+            echo "Commits since $PREVIOUS_TAG:"
+            echo "$COMMITS"
+
+            # conventional commits decide the bump: feat!/BREAKING CHANGE -> major,
+            # feat -> minor, anything else -> patch
+            if echo "$COMMITS" | grep -qE '^[a-z]+(\(.+\))?!:|^BREAKING CHANGE'; then
+              echo "Major version bump"
+              NEW_VERSION=$(npm version major --no-git-tag-version)
+            elif echo "$COMMITS" | grep -qE '^feat(\(.+\))?:'; then
+              echo "Minor version bump"
+              NEW_VERSION=$(npm version minor --no-git-tag-version)
+            else
+              echo "Patch version bump"
+              NEW_VERSION=$(npm version patch --no-git-tag-version)
+            fi
+            NEW_VERSION=${NEW_VERSION#v}
+          fi
+
+          echo "Version to be released: $NEW_VERSION"
+          echo "new_version=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Generate changelog
+        run: |
+          if [[ -f CHANGELOG.md ]]; then
+            existing_changelog=$(sed '1d' CHANGELOG.md)
+          else
+            existing_changelog=""
+          fi
+
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+
+          if [[ -z "$PREVIOUS_TAG" ]]; then
+            RANGE=""
+          else
+            RANGE="${PREVIOUS_TAG}..HEAD"
+          fi
+
+          changelog_content="# CHANGELOG\n\n"
+          changelog_content+="## ${new_version} ($(date +'%Y-%m-%d'))\n\n"
+          changelog_content+=$(git log $RANGE --pretty=format:"* %s by %an [View](https://github.com/${GITHUB_REPOSITORY}/commit/%H)" --reverse | grep -v 'Merge\|skip]' || true)
+          changelog_content+="\n\n"
+
+          echo -e "${changelog_content}${existing_changelog}" > CHANGELOG.md
+
+      - name: Commit release files, tag and push
+        run: |
+          git add package.json package-lock.json CHANGELOG.md
+
+          git diff --quiet && git diff --staged --quiet || (
+            git commit -m "[ci skip]: release v${new_version}" --no-verify
+          )
+
+          # the annotated tag points at the release commit itself;
+          # no v prefix, matching the repository's existing tag convention
+          git tag -a "${new_version}" -m "Release ${new_version}"
+          git push origin HEAD --follow-tags
