@@ -19,8 +19,14 @@ const commom = {
     }
   },
   director: { type: 'string' },
-  writers: { type: 'string' },
-  actors: { type: 'string' },
+  writers: {
+    type: 'array',
+    items: { type: 'string' }
+  },
+  actors: {
+    type: 'array',
+    items: { type: 'string' }
+  },
   description: { type: 'string' },
   languages: {
     type: 'array',

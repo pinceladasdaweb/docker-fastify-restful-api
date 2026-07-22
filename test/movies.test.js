@@ -24,8 +24,8 @@ const movie = {
   releasedAt: '2002-08-30T00:00:00.000Z',
   genres: ['Crime', 'Drama'],
   director: 'Fernando Meirelles',
-  writers: 'Bráulio Mantovani',
-  actors: 'Alexandre Rodrigues, Leandro Firmino',
+  writers: ['Bráulio Mantovani'],
+  actors: ['Alexandre Rodrigues', 'Leandro Firmino'],
   description: 'A luta de Buscapé para se tornar fotógrafo.',
   languages: ['Portuguese'],
   country: 'BRA',
@@ -58,6 +58,8 @@ test('creates a movie and generates the slug from title and year', async () => {
 
   const body = res.json()
   assert.strictEqual(body.slug, 'cidade-de-deus-2002', 'slug must normalize accented characters')
+  assert.deepStrictEqual(body.actors, movie.actors, 'actors must round-trip as an array')
+  assert.deepStrictEqual(body.writers, movie.writers, 'writers must round-trip as an array')
   assert.strictEqual(body.__v, undefined, 'mongoose internals must not leak')
 })
 
@@ -113,4 +115,12 @@ test('DELETE responds 204 and the movie disappears from queries (soft delete)', 
 
   const after = await inject('GET', `/api/v1/movies/${created._id}`)
   assert.strictEqual(after.statusCode, 404)
+})
+
+test('a plain string in writers/actors is coerced into a single-item array', async () => {
+  // ajv runs with coerceTypes: 'array' (same as fastify's default validator)
+  const res = await inject('POST', '/api/v1/movies', { ...movie, title: 'Bacurau', year: 2019, actors: 'Sônia Braga' })
+
+  assert.strictEqual(res.statusCode, 201)
+  assert.deepStrictEqual(res.json().actors, ['Sônia Braga'])
 })
