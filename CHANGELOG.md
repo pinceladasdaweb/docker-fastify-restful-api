@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.7 (2026-07-27)
+
+* chore(deps): bump @fastify/static from 10.1.1 to 10.1.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/66bf721eef4ba5eb3489287b4fe3df0d7b058801)
+
+
 ## 4.0.6 (2026-07-27)
 
 * chore(deps): upgrade dependencies by Pedro Rogério [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/e7eb03970a922a04495de451207e6688f18518ee)
