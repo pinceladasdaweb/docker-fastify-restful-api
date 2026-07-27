@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.5 (2026-07-27)
+
+* fix: CVE-2026-15074 security vulnerability by orbisai0security [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/791a73a299009759c45d53e773357575a2d35533)
+
+
 ## 4.0.4 (2026-07-27)
 
 * chore(deps-dev): bump lint-staged from 17.1.0 to 17.1.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/5c57604731802ab0619298c3f38014c5eae28976)
