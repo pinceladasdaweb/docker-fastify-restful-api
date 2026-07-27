@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.6 (2026-07-27)
+
+* chore(deps): upgrade dependencies by Pedro Rogério [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/e7eb03970a922a04495de451207e6688f18518ee)
+
+
 ## 4.0.5 (2026-07-27)
 
 * fix: CVE-2026-15074 security vulnerability by orbisai0security [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/791a73a299009759c45d53e773357575a2d35533)
