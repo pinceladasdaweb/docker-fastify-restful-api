@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.3 (2026-07-27)
+
+* chore(deps): bump find-my-way from 9.6.0 to 9.7.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/3cd6fc29d8fc2a8744e89aa18e78f5b84ee74e72)
+
+
 ## 4.0.2 (2026-07-22)
 
 * ci: push releases with a deploy key to bypass branch protection by Pedro Rogério [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/55269317fd3dbb904037a8bd022d6669d0db9477)
