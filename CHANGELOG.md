@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.9 (2026-08-04)
+
+* chore(deps): bump fast-uri from 3.1.4 to 3.1.5 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/ab25cc7033d39b7b83c646a62d96f2ad25a4d24c)
+
+
 ## 4.0.8 (2026-07-29)
 
 * chore(deps): bump mongoose from 9.8.0 to 9.8.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/b6be8a8ac14d3a151b3d59195411cce7bdd94448)
