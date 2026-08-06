@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 4.0.8 (2026-07-29)
+
+* chore(deps): bump mongoose from 9.8.0 to 9.8.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/b6be8a8ac14d3a151b3d59195411cce7bdd94448)
+* chore(deps): bump @fastify/swagger-ui from 6.1.0 to 6.1.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/cc6c11de5c796e88283e311140fd2655ec0c5cfe)
+
+
 ## 4.0.7 (2026-07-27)
 
 * chore(deps): bump @fastify/static from 10.1.1 to 10.1.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/66bf721eef4ba5eb3489287b4fe3df0d7b058801)
