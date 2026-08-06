@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 4.0.10 (2026-08-06)
+
+* chore(deps): bump @fastify/rate-limit from 11.1.0 to 11.2.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/90a1d7f0fd5b8a6b631bf6299470853b58e0f988)
+* chore(deps): bump @sentry/node from 10.68.0 to 10.69.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/b730b7fc1722daf47ec981842a3f1aa5c4adea61)
+* chore(deps): bump mongoose from 9.8.1 to 9.9.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/78e1367a5a8a80d73b24327ba64fec3a015c6c87)
+* chore(deps): bump fastify from 5.10.0 to 5.11.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/44b158166733310955dc9920c4f4adb8e55b00a4)
+* chore(deps-dev): bump lint-staged from 17.2.0 to 17.3.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/a37e3eb48d659533c06cd9d64ac2d87930c8b111)
+* chore(deps): bump mongoose from 9.9.0 to 9.9.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/c76bd14b2dad074c27170e234bc7ada80794d33d)
+* chore(deps): bump fast-uri from 3.1.4 to 3.1.5 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/ab25cc7033d39b7b83c646a62d96f2ad25a4d24c)
+* chore(deps-dev): bump brace-expansion from 1.1.16 to 1.1.18 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/cc80db7ee1513d58da81b47842ac88c8b4943a78)
+* chore: bump version by Pedro Rogério [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/c98522086ca35e6a778faeb6bd5909e2d9d14949)
+
+
 ## 4.0.8 (2026-07-29)
 
 * chore(deps): bump mongoose from 9.8.0 to 9.8.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/b6be8a8ac14d3a151b3d59195411cce7bdd94448)
