@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.11 (2026-08-11)
+
+* chore(deps-dev): bump js-yaml from 4.3.0 to 4.3.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/9073137131c30c40ea1b13d72aa91c3c736a0c38)
+
+
 ## 4.0.10 (2026-08-06)
 
 * chore(deps): bump @fastify/rate-limit from 11.1.0 to 11.2.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/90a1d7f0fd5b8a6b631bf6299470853b58e0f988)
