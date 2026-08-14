@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 4.0.12 (2026-08-14)
+
+* chore(deps): bump @fastify/static from 10.1.2 to 10.1.3 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/a3f8e3b26f16a71e701bba1f04892849527738b0)
+* chore(deps): bump fastify from 5.11.0 to 5.11.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/6bce7fed7b79ada917de41c93dc0dc6904de1636)
+* chore(deps): bump fastify from 5.11.2 to 5.11.3 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/ffdab9e56555dcdce462db354d89e6451806f7c5)
+* chore(deps): bump @sentry/node from 10.69.0 to 10.70.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/7a2fcdb455f005ce7f92a1cc284fc1b6b8fb85fe)
+* chore(deps): bump mongoose from 9.9.1 to 9.9.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/cea081eb90fad51a32b5f7d1c41a620251c15c3b)
+
+
 ## 4.0.11 (2026-08-11)
 
 * chore(deps-dev): bump js-yaml from 4.3.0 to 4.3.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/9073137131c30c40ea1b13d72aa91c3c736a0c38)
