@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@fastify/cors": "^11.3.0",
-    "@fastify/helmet": "^13.1.0",
+    "@fastify/helmet": "^13.1.1",
     "@fastify/jwt": "^10.2.2",
     "@fastify/rate-limit": "^11.2.0",
     "@fastify/static": "^10.1.3",
