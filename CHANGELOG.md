@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 4.0.13 (2026-09-02)
+
+* chore(deps-dev): bump @commitlint/cli from 21.2.1 to 21.2.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/49b718d60b11be4ebfd9cae5f0e698f46ba27e41)
+* chore(deps): bump fastify from 5.11.3 to 5.12.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/b37f403459d4af3abb04c2760d37563182695701)
+* chore(deps): bump @fastify/jwt from 10.2.1 to 10.2.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/cc4a615f4bcd890b093de3731018e28c2ed79e1a)
+* chore(deps): bump mongoose from 9.9.2 to 9.9.3 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/a9466a505ff34e0b4681b00cf34b841550141959)
+* chore(deps): bump @fastify/helmet from 13.1.0 to 13.1.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/f9291c27dc38cb06febb07875d0e379f47ed1eeb)
+* chore(deps): bump fastify from 5.12.0 to 5.12.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/3652f5cb05b9876ea6c63791dbc45570a4c6f1cb)
+* chore(deps): bump @sentry/node from 10.70.0 to 10.71.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/89f69c12de44e2534fb832f23ad4cdb14104cbbc)
+* chore(deps-dev): bump lint-staged from 17.3.0 to 17.4.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/30d3f3c8174f3ab8c48012ee22cf85bbe3dacbf9)
+* chore(deps): bump mongoose from 9.9.3 to 9.9.4 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/2e35a20bb3e91b691de603569088dbd415ba136c)
+* chore(deps): bump @sentry/node from 10.71.0 to 10.72.0 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/be2aca0e0ba2abc8f9127bdb13b5b739fc445e4a)
+* chore(deps): bump fastify from 5.11.3 to 5.12.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/fc6691a6280de71cb85914b2f67777e3e988698c)
+
+
 ## 4.0.12 (2026-08-14)
 
 * chore(deps): bump @fastify/static from 10.1.2 to 10.1.3 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/a3f8e3b26f16a71e701bba1f04892849527738b0)
