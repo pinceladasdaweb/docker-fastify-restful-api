@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.14 (2026-09-02)
+
+* chore(deps): bump fast-uri from 3.1.5 to 3.1.7 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/52a8d79ba06d4093e4861cbc4466fd81043124b3)
+
+
 ## 4.0.13 (2026-09-02)
 
 * chore(deps-dev): bump @commitlint/cli from 21.2.1 to 21.2.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/49b718d60b11be4ebfd9cae5f0e698f46ba27e41)
