@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.16 (2026-09-29)
+
+* chore(deps): bump ip-address from 10.3.1 to 10.7.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/b53db3ba3165a4e0ea292a80a2891372f8a01027)
+
+
 ## 4.0.15 (2026-09-13)
 
 * chore(deps-dev): bump js-yaml from 4.3.1 to 4.3.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/62eb8f742a43950cc713e66abab91badbd80fff7)
