@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.19 (2026-10-01)
+
+* chore(deps): bump fast-uri from 3.1.7 to 3.1.8 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/e824826813e9aa05c4424c5052ab5113670cfcda)
+
+
 ## 4.0.18 (2026-10-01)
 
 * chore(deps): bump fastify from 5.12.1 to 5.12.5 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/fef90bf959e0b004506b63eff3406ccce1daaf07)
