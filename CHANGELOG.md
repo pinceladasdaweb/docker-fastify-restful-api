@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.17 (2026-10-01)
+
+* chore(deps-dev): bump brace-expansion from 1.1.18 to 1.1.21 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/95dbf9bcbc78875bdeedd4987834a55f21af1165)
+
+
 ## 4.0.16 (2026-09-29)
 
 * chore(deps): bump ip-address from 10.3.1 to 10.7.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/b53db3ba3165a4e0ea292a80a2891372f8a01027)
