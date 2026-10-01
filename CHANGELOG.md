@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.18 (2026-10-01)
+
+* chore(deps): bump fastify from 5.12.1 to 5.12.5 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/fef90bf959e0b004506b63eff3406ccce1daaf07)
+
+
 ## 4.0.17 (2026-10-01)
 
 * chore(deps-dev): bump brace-expansion from 1.1.18 to 1.1.21 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/95dbf9bcbc78875bdeedd4987834a55f21af1165)
