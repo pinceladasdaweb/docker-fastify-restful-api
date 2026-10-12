@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.20 (2026-10-12)
+
+* chore(deps): bump fast-jwt from 6.2.4 to 6.3.4 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/1a88ef247b7a061c19a18717d28b6e711fdc0ac1)
+
+
 ## 4.0.19 (2026-10-01)
 
 * chore(deps): bump fast-uri from 3.1.7 to 3.1.8 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/e824826813e9aa05c4424c5052ab5113670cfcda)
