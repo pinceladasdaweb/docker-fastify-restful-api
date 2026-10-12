@@ -38,7 +38,7 @@
     "standard": "^17.1.2"
   },
   "dependencies": {
-    "@fastify/cors": "^11.3.0",
+    "@fastify/cors": "^11.3.1",
     "@fastify/helmet": "^13.1.2",
     "@fastify/jwt": "^10.2.2",
     "@fastify/rate-limit": "^11.2.1",
