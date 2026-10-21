@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 4.0.22 (2026-10-21)
+
+* chore(deps-dev): bump follow-redirects from 1.16.0 to 1.16.1 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/2aa828a8034bb672ad09d7d77f8689f3f1e550cd)
+
+
 ## 4.0.21 (2026-10-12)
 
 * chore(deps): bump fast-copy from 4.0.3 to 4.1.2 by dependabot[bot] [View](https://github.com/pinceladasdaweb/docker-fastify-restful-api/commit/e038b6362c6b24fded926dd2f71d3806357ae400)
