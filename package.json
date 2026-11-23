@@ -42,7 +42,7 @@
     "@fastify/helmet": "^13.2.0",
     "@fastify/jwt": "^10.2.8",
     "@fastify/rate-limit": "^11.2.2",
-    "@fastify/static": "^10.1.11",
+    "@fastify/static": "^10.1.12",
     "@fastify/swagger": "^9.9.5",
     "@fastify/swagger-ui": "^6.1.4",
     "@sentry/node": "^11.13.0",
